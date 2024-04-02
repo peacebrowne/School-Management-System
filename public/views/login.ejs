@@ -1,0 +1,137 @@
+<html lang="en">
+  <head>
+    <%- include('./partials/head'); %>
+  </head>
+  <body class="font-body">
+    <section id="wrapper" class="bg-gray-50">
+      <div
+        class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+      >
+        <div
+          class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+        >
+          <div id="form-container" class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            <h1
+              class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
+            >
+              Sign into your account
+            </h1>
+
+            <form
+              class="space-y-4 md:space-y-6"
+              hx-post="/login"
+              hx-target="find .message"
+              hx-swap="outerHTML transition:true"
+            >
+              <div class="message"></div>
+
+              <div>
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Email</label
+                >
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="johnny@example.com"
+                  required
+                />
+                <!-- <div class="message"></div> -->
+              </div>
+              <div>
+                <label
+                  for="password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Password</label
+                >
+                <div class="relative">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    required
+                    autocomplete=""
+                  />
+                  <div
+                    id="password-visibility"
+                    class="absolute right-0 top-0 w-11 h-full flex"
+                  >
+                    <svg
+                      id="show-password"
+                      class="m-auto w-6 cursor-pointer hidden svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                      fill="gray"
+                    >
+                      <path
+                        d="M256 105c-101.8 0-188.4 62.4-224 151 35.6 88.6 122.2 151 224 151s188.4-62.4 224-151c-35.6-88.6-122.2-151-224-151zm0 251.7c-56 0-101.8-45.3-101.8-100.7S200 155.3 256 155.3 357.8 200.6 357.8 256 312 356.7 256 356.7zm0-161.1c-33.6 0-61.1 27.2-61.1 60.4s27.5 60.4 61.1 60.4 61.1-27.2 61.1-60.4-27.5-60.4-61.1-60.4z"
+                      />
+                    </svg>
+                    <svg
+                      id="hide-password"
+                      class="m-auto w-6 cursor-pointer svg"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 512 512"
+                      fill="gray"
+                    >
+                      <path
+                        d="M88.3 68.1c-5.6-5.5-14.6-5.5-20.1.1-5.5 5.5-5.5 14.5 0 20l355.5 355.7c3.7 3.7 9 4.9 13.7 3.6 2.4-.6 4.6-1.9 6.4-3.7 5.5-5.5 5.5-14.5 0-20L88.3 68.1zM260.2 345.9c-53 2.4-96.6-41.2-94.1-94.1.6-12.2 3.6-23.8 8.6-34.3L121.3 164c-27.7 21.4-55.4 48.9-85.1 81.3-5.5 6.1-5.6 15.2-.1 21.3C101 338.3 158.2 400 255.8 400c29.7 0 57.1-7.4 82.3-19.2l-43.5-43.5c-10.6 5-22.2 8-34.4 8.6zM475.8 266c5.3-5.8 5.6-14.6.5-20.7C424 181.8 351.5 112 255.8 112c-29.1 0-56 6.6-82 19l43.7 43.7c10.5-5 22.1-8.1 34.3-8.6 53-2.4 96.6 41.2 94.1 94.1-.6 12.2-3.6 23.8-8.6 34.3l53.5 53.5c33-25.3 61.3-55.9 85-82z"
+                      />
+                      <path
+                        d="M192.2 260.9c2.4 31.3 27.6 56.5 58.9 58.9 8.2.6 16.1-.3 23.4-2.6l-79.8-79.8c-2.2 7.4-3.1 15.3-2.5 23.5zM320 256c0-1.3-.1-2.6-.1-3.9-5.6 2.5-11.7 3.9-18.2 3.9-1.1 0-2.1 0-3.1-.1l18.6 18.7c1.8-5.9 2.8-12.2 2.8-18.6zM256 209c0-6 1.1-11.7 3.1-16.9-1 0-2-.1-3.1-.1-6.4 0-12.6 1-18.5 2.8l18.7 18.7c-.1-1.5-.2-3-.2-4.5z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div class="text-xxs text-gray-400">
+                  Password should include atleast on Uppercase, Lowercase,
+                  Number and Minimum 8 characters.
+                </div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex items-start">
+                  <!-- <div class="flex items-center h-5">
+                    <input
+                      id="remember"
+                      aria-describedby="remember"
+                      type="checkbox"
+                      class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
+                    />
+                  </div>
+                  <div class="ml-3 text-sm">
+                    <label
+                      for="remember"
+                      class="text-gray-500 dark:text-gray-300"
+                      >Remember me</label
+                    >
+                  </div> -->
+                </div>
+                <a
+                  href="#"
+                  class="text-sm text-orange-700 font-bold text-primary-600 hover:underline dark:text-primary-500"
+                  >Forgot password?</a
+                >
+              </div>
+              <button
+                type="submit"
+                class="w-full bg-orange-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              >
+                Sign in
+              </button>
+              <p
+                class="text-sm font-light text-gray-500 dark:text-gray-400"
+              ></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "name": "sajeon-academy-international",
+  "version": "1.3.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "build": "tailwindcss build ./public/css/input.css -o ./public/css/output.css",
+    "ajax": "npx serve"
+  },
+  "keywords": [],
+  "author": "Sajeon Academy International <sajeon@gmail.com> (https://sajeon.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "apexcharts": "^3.47.0",
+    "bcrypt": "^5.1.1",
+    "chart.js": "^4.4.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.3",
+    "flowbite": "^2.3.0",
+    "htmx.org": "^1.9.10",
+    "sqlite3": "^5.1.7",
+    "uuid": "^9.0.1",
+    "validator": "^13.11.0"
+  },
+  "description": ""
+}

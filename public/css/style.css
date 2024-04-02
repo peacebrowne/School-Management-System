@@ -1,0 +1,65 @@
+.text-xxs {
+  font-size: 0.75rem /* 14px */;
+  line-height: 1.25rem /* 20px */;
+}
+
+:root {
+  --bs-blue: #63b3ed;
+  --bs-indigo: #596cff;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #f56565;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #fbd38d;
+  --bs-green: #81e6d9;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-body-color: #67748e;
+  --bs-primary: #cb0c9f;
+  --bs-secondary: #8392ab;
+  --bs-success: #82d616;
+  --bs-info: #17c1e8;
+  --bs-warning: #fbcf33;
+  --bs-danger: #ea0606;
+  --bs-light: #e9ecef;
+  --bs-dark: #344767;
+  --bs-white: #fff;
+  --bs-black: #000;
+  --bs-transparent: transparent;
+  --bs-primary: #581d0a;
+  --bs-box-shadow: 0 8px 26px -4px hsla(0, 0%, 8%, 0.15),
+    0 8px 9px -5px hsla(0, 0%, 8%, 0.267);
+}
+
+.success {
+  color: var(--bs-success);
+  background-color: #16d6a624;
+}
+
+.warning {
+  color: var(--bs-warning);
+  background-color: #fbd03374;
+}
+
+.danger {
+  color: var(--bs-danger);
+  background-color: rgba(234, 6, 6, 0.16);
+}
+
+.info {
+  color: var(--bs-dark);
+  font-size: small;
+}
+
+.bg-light-green {
+  background-color: #d1f3e0;
+}
+
+.bg-light-yellow {
+  background-color: #fff2d8;
+}
+.bg-light-red {
+  background-color: #ffeaea;
+}
