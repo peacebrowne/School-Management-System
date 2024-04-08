@@ -1,32 +1,43 @@
-import { getUserData, writeData } from "../repositories/repositories.js";
+import Interactions from "../repositories/repositories.js";
 import { v4 as uuidv4 } from "uuid";
 import { genSalt, hash } from "bcrypt";
 import pkg from "validator";
+import { Create } from "../../controller/handler.js";
 const { isEmail, isEmpty, isStrongPassword } = pkg;
 
 export default class Validations {
   signIn = async (data) => {
-    const { email, password } = data;
+    const { email, password } = JSON.parse(data);
 
-    const result = await getUserData(email);
+    const result = await new Interactions("person", "read").readData(email);
+    console.log(result);
 
     if (!result) return;
 
-    return result.email === email && result.password === password
+    return result?.email === email && result?.password === password
       ? true
       : false;
   };
 
   signUp = async (data) => {
-    const info = JSON.parse(data);
+    data = JSON.parse(data);
 
-    const result = await getUserData(info.email);
-    info["password"] = await hash(info.password, await genSalt());
-    info["id"] = uuidv4();
+    const columns = Object.keys(data).join(", ");
+    const params = Object.values(data);
+    const values = params.map(() => "?").join(", ");
 
-    return result
-      ? { msg: "User Already Exit!", status: false }
-      : { msg: await writeData(info), status: true };
+    // const info = JSON.parse(data);
+    // const result = this.signIn(data);
+    // info["password"] = await hash(info.password, await genSalt());
+    // info["id"] = uuidv4();
+    // return result
+    //   ? { msg: "User Already Exit!", status: false }
+    //   : {
+    //       msg: await new Interactions("person,student", "write").writeData(
+    //         info
+    //       ),
+    //       status: true,
+    //     };
   };
 
   resetPassword = async (mail) => {
@@ -67,3 +78,18 @@ export default class Validations {
     );
   };
 }
+
+let v = new Validations();
+v.signUp(`{
+    "first_name": "John",
+    "middle_name": "Doe",
+    "last_name": "Smith",
+    "date_of_birth": "1990-05-15",
+    "place_of_birth": "New York",
+    "gender": "Male",
+    "city": "New York City",
+    "address": "123 Main St",
+    "nationality": "American",
+    "full_name": "John Doe Smith",
+    "email": "johndoe@example.com"
+  }`);

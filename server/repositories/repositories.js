@@ -1,63 +1,91 @@
 import sqlite3 from "sqlite3";
 
-let transaction;
-
 // CONNECT TO DB
 const db = new sqlite3.Database("database.db");
 
-// CREATE USER TABLE
-transaction = `CREATE TABLE IF NOT EXISTS users (
-                fullname TEXT NOT NULL, email TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL, id TEXT NOT NULL
-              );`;
-// db.run(transaction);
+class Transactions {
+  constructor(table) {
+    this.table = table;
+  }
 
-// QUERY ALL THE DATA
-const readData = async () => {
-  transaction = "SELECT  id, fullname, color FROM users";
-  return new Promise((resolve, reject) => {
-    db.all(transaction, (err, data) => {
-      if (err) return reject(err.message);
-      resolve(data);
-    });
-  });
-};
+  write(columns, values) {
+    return `INSERT INTO ${this.table} (${columns}) VALUES (${values})`;
+  }
+  read(fields = ["*"], filters = {}, tables = [], conditions = {}) {
+    const columns = fields.join(", ");
 
-// INSERTING INTO DB
-const writeData = async (data) => {
-  const { fullname, email, password, id, color } = data;
+    let query = `SELECT ${columns} FROM ${this.table}`;
 
-  transaction =
-    "INSERT INTO users(fullname, email, password, id) VALUES (?,?,?,?,?)";
-
-  return new Promise((resolve, reject) => {
-    db.run(transaction, [fullname, email, password, id, color], (error) => {
-      if (error) return reject(error.message);
-      resolve("User Successfully Registered!");
-    });
-  });
-};
-
-const singleUser = (id) => {
-  transaction = `SELECT fullname, email, active, color FROM users WHERE id = ?`;
-  return new Promise((resolve, reject) => {
-    db.get(transaction, id, (err, data) => {
-      if (err) return reject(err.message);
-      resolve(data);
-    });
-  });
-};
-
-// SIGNIN VALIDATION
-const getUserData = (email) => {
-  transaction = `SELECT person.id, email, password, role, full_name FROM person, users, roles WHERE person.id = users.employee_id AND users.employee_id = roles.employee_id AND email = ? `;
-  return new Promise((resolve, reject) => {
-    db.get(transaction, email, (err, data) => {
-      if (err) {
-        return reject(err.message);
+    if (tables.length) {
+      for (const [joinTable, condition] of Object.entries(conditions)) {
+        query += ` JOIN ${joinTable} ON ${condition}`;
       }
-      resolve(data);
-    });
-  });
-};
+    }
 
-export { readData, writeData, getUserData, singleUser };
+    const keys = Object.keys(filters);
+
+    if (keys.length) {
+      const filterClauses = keys.map((key) => `${key} = '${filters[key]}'`);
+      const whereClause = ` WHERE ${filterClauses.join(" AND ")}`;
+      query += whereClause;
+    }
+
+    return query;
+  }
+
+  update(columns, values, filters) {
+    let query = `UPDATE ${this.table} SET ${columns} WHERE ${filters}`;
+    return query;
+  }
+}
+
+class Interactions {
+  writeData = async (table, data) => {
+    return await new Promise((resolve, reject) => {
+      const operations = new Transactions(table).write(
+        data.columns,
+        data.values
+      );
+      const params = data.params;
+
+      db.run(operations, params, (error) => {
+        if (error) return reject(error.message);
+        resolve("User Successfully Registered!");
+      });
+    });
+  };
+
+  readData = async (table, data) => {
+    return await new Promise((resolve, reject) => {
+      const operations = new Transactions(table).read(
+        data.fields,
+        data.filters,
+        data.joinTables,
+        data.joinConditions
+      );
+
+      db.all(operations, (err, data) => {
+        if (err) {
+          return reject(err.message);
+        }
+        resolve(data);
+      });
+    });
+  };
+
+  updateData = async (table, data) => {
+    return await new Promise((resolve, reject) => {
+      const operations = this.update(data.columns, data.values, data.filters);
+
+      console.log(operations);
+      const params = data.params;
+
+      db.run(operations, params, (error) => {
+        if (error) return reject(error.message);
+        resolve("Update Successfully!");
+      });
+    });
+  };
+}
+
+export default Interactions;

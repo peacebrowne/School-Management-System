@@ -1,0 +1,26 @@
+[
+  {
+    "first_name": "John",
+    "middle_name": "Doe",
+    "last_name": "Smith",
+    "date_of_birth": "1990-05-15",
+    "place_of_birth": "New York",
+    "gender": "Male",
+    "city": "New York City",
+    "address": "123 Main St",
+    "nationality": "American",
+    "full_name": "John Doe Smith"
+  },
+  {
+    "first_name": "Jane",
+    "middle_name": "Alice",
+    "last_name": "Doe",
+    "date_of_birth": "1992-08-20",
+    "place_of_birth": "Los Angeles",
+    "gender": "Female",
+    "city": "Los Angeles",
+    "address": "456 Elm St",
+    "nationality": "American",
+    "full_name": "Jane Alice Doe"
+  }
+]

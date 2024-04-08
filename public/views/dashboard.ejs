@@ -659,54 +659,7 @@
         <main class="py-6" style="background: #d9dcdf">
           <div class="px-4 sm:px-6 lg:px-16">
             <!-- BREADCRUMB -->
-            <section>
-              <h3 class="title text-2xl font-bold pb-2">Dashboard</h3>
-
-              <nav class="flex" aria-label="Breadcrumb">
-                <ol role="list" class="flex items-center space-x-4">
-                  <li>
-                    <div>
-                      <a href="#" class="text-gray-400 hover:text-gray-500">
-                        <svg
-                          class="h-5 w-5 flex-shrink-0"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                        <span class="sr-only">Home</span>
-                      </a>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="flex items-center">
-                      <svg
-                        class="h-5 w-5 flex-shrink-0 text-gray-400"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                      <a
-                        href="#"
-                        class="ml-4 text-sm font-medium text-gray-500 hover:text-[#12372A]"
-                        >Dashboard</a
-                      >
-                    </div>
-                  </li>
-                </ol>
-              </nav>
-            </section>
+            <%- include('./partials/breadcrumbs'); %>
 
             <!-- CARDS -->
             <section>
@@ -1217,233 +1170,14 @@
             <section>
               <div class="container items-center mt-4 m-auto">
                 <div class="grid grid-cols-4 gap-4">
-                  <!-- EARNING CHARTS -->
-                  <div class="col-span-2 bg-white p-3 rounded-lg shadow md:p-6">
-                    <div class="w-full bg-white p-3">
-                      <h5
-                        class="leading-none text-2xl font-bold text-gray-900 pb-1"
-                      >
-                        Earnings
-                      </h5>
-                      <div class="flex justify-between mb-5">
-                        <div class="grid gap-4 grid-cols-2">
-                          <div>
-                            <h5
-                              class="inline-flex text-sm items-center text-gray-500 leading-none font-normal mb-2"
-                            >
-                              Total Collections
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"
-                                class="w-4 h-4 mx-2"
-                                fill="#1A56DB"
-                              >
-                                <path
-                                  d="M256 76c48.1 0 93.3 18.7 127.3 52.7S436 207.9 436 256s-18.7 93.3-52.7 127.3S304.1 436 256 436c-48.1 0-93.3-18.7-127.3-52.7S76 304.1 76 256s18.7-93.3 52.7-127.3S207.9 76 256 76m0-28C141.1 48 48 141.1 48 256s93.1 208 208 208 208-93.1 208-208S370.9 48 256 48z"
-                                />
-                                <path
-                                  d="M363.5 148.5C334.8 119.8 296.6 104 256 104c-40.6 0-78.8 15.8-107.5 44.5C119.8 177.2 104 215.4 104 256s15.8 78.8 44.5 107.5C177.2 392.2 215.4 408 256 408c40.6 0 78.8-15.8 107.5-44.5C392.2 334.8 408 296.6 408 256s-15.8-78.8-44.5-107.5z"
-                                />
-                              </svg>
-                            </h5>
-                            <div class="text-sm font-medium text-black">
-                              $ 75,000
-                            </div>
-                          </div>
-                          <div>
-                            <h5
-                              class="inline-flex text-sm items-center text-gray-500 leading-none font-normal mb-2"
-                            >
-                              Fee Collections
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 512 512"
-                                class="w-4 h-4 mx-2"
-                                fill="#FF0060"
-                              >
-                                <path
-                                  d="M256 76c48.1 0 93.3 18.7 127.3 52.7S436 207.9 436 256s-18.7 93.3-52.7 127.3S304.1 436 256 436c-48.1 0-93.3-18.7-127.3-52.7S76 304.1 76 256s18.7-93.3 52.7-127.3S207.9 76 256 76m0-28C141.1 48 48 141.1 48 256s93.1 208 208 208 208-93.1 208-208S370.9 48 256 48z"
-                                />
-                                <path
-                                  d="M363.5 148.5C334.8 119.8 296.6 104 256 104c-40.6 0-78.8 15.8-107.5 44.5C119.8 177.2 104 215.4 104 256s15.8 78.8 44.5 107.5C177.2 392.2 215.4 408 256 408c40.6 0 78.8-15.8 107.5-44.5C392.2 334.8 408 296.6 408 256s-15.8-78.8-44.5-107.5z"
-                                />
-                              </svg>
-                            </h5>
-                            <div class="text-sm font-medium text-black">
-                              $ 15,000
-                            </div>
-                          </div>
-                        </div>
-                        <div>
-                          <button
-                            id="dropdownDefaultButton"
-                            data-dropdown-toggle="lastDaysdropdown"
-                            data-dropdown-placement="bottom"
-                            type="button"
-                            class="px-3 py-2 inline-flex items-center text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border-gray-200"
-                          >
-                            Last week
-                            <svg
-                              class="w-2.5 h-2.5 ms-2.5"
-                              aria-hidden="true"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 10 6"
-                            >
-                              <path
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="m1 1 4 4 4-4"
-                              />
-                            </svg>
-                          </button>
-                          <div
-                            id="lastDaysdropdown"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
-                          >
-                            <ul
-                              class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                              aria-labelledby="dropdownDefaultButton"
-                            >
-                              <li>
-                                <a
-                                  href="#"
-                                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                  >Yesterday</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  href="#"
-                                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                  >Today</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  href="#"
-                                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                  >Last 7 days</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  href="#"
-                                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                  >Last 30 days</a
-                                >
-                              </li>
-                              <li>
-                                <a
-                                  href="#"
-                                  class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                                  >Last 90 days</a
-                                >
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div id="line-chart" class="py-5"></div>
-                    </div>
-                  </div>
+                  <!-- LINE CHARTS 01 -->
+                  <%- include('./charts/line-chart'); %>
+
                   <!-- BAR CHART -->
-                  <div class="bg-white p-3 rounded-lg shadow">
-                    <div class="max-w-sm w-full bg-white rounded-lg p-4 md:p-6">
-                      <h5
-                        class="leading-none text-2xl font-bold text-gray-900 pb-1"
-                      >
-                        Expenses
-                      </h5>
-
-                      <div class="flex justify-between pt-2">
-                        <div class="grid">
-                          <div class="text-sm">
-                            <h5
-                              class="inline-flex items-center text-gray-500 leading-none font-normal"
-                            >
-                              Jan 2024
-                            </h5>
-                            <div class="font-medium text-sm text-black">
-                              $ 15,000
-                            </div>
-                          </div>
-                        </div>
-                        <div class="grid">
-                          <div class="text-sm">
-                            <h5
-                              class="inline-flex items-center text-gray-500 leading-none font-normal"
-                            >
-                              Feb 2024
-                            </h5>
-                            <div class="font-medium text-sm text-black">
-                              $ 10,000
-                            </div>
-                          </div>
-                        </div>
-                        <div class="grid">
-                          <div class="text-sm">
-                            <h5
-                              class="inline-flex items-center text-gray-500 leading-none font-normal"
-                            >
-                              Mar 2024
-                            </h5>
-                            <div class="font-medium text-sm text-black">
-                              $ 11,000
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div id="column-chart" class="pt-[0.9rem]"></div>
-                    </div>
-                  </div>
+                  <%- include('./charts/bar-chart'); %>
 
                   <!-- DONUT CHART -->
-                  <div class="bg-white p-3 rounded-lg shadow">
-                    <div class="max-w-sm w-full bg-white rounded-lg md:p-6">
-                      <div class="flex justify-between">
-                        <div class="flex justify-center items-center">
-                          <h5
-                            class="leading-none text-2xl font-bold text-gray-900"
-                          >
-                            Students
-                          </h5>
-                        </div>
-                      </div>
-                      <div class="flex justify-between pt-3">
-                        <div class="grid">
-                          <div class="text-sm">
-                            <h5
-                              class="inline-flex items-center text-gray-500 leading-none font-normal"
-                            >
-                              Male Student
-                            </h5>
-                            <div class="font-medium text-sm text-black">
-                              105,000
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="grid">
-                          <div class="text-sm">
-                            <h5
-                              class="inline-flex items-center text-gray-500 leading-none font-normal"
-                            >
-                              Female Student
-                            </h5>
-                            <div class="font-medium text-sm text-black">
-                              45,000
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="pt-10" id="donut-chart"></div>
-                    </div>
-                  </div>
+                  <%- include('./charts/donut-chart'); %>
                 </div>
               </div>
             </section>
@@ -1453,7 +1187,224 @@
               <div class="container items-center mt-4 m-auto">
                 <div class="grid grid-cols-5 gap-4">
                   <div class="col-span-2">
-                    <div class="bg-white p-3 rounded-lg shadow"></div>
+                    <div class="bg-white p-3 rounded-lg shadow">
+                      <div class="col-12 xl:col-6 xxxl:col-4">
+                        <div class="card dashboard-card-four p-5">
+                          <div class="card-body">
+                            <div class="flex justify-between items-center">
+                              <div class="item-title">
+                                <h5
+                                  class="leading-none text-2xl font-bold text-gray-900"
+                                >
+                                  Event Calender
+                                </h5>
+                              </div>
+                            </div>
+                            <div class="calender-wrap">
+                              <div id="fc-calender" class="px-14">
+                                <div
+                                  class="flex justify-between font-bold items-center py-8"
+                                >
+                                  <h2>April 2024</h2>
+                                  <div class="">
+                                    <button
+                                      type="button"
+                                      class=""
+                                      aria-label="prev"
+                                    >
+                                      <span
+                                        class="inline-flex rounded-lg p-3 bg-blue-50 ring-4 ring-white hover:bg-[#1A56DB] hover:text-white"
+                                      >
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          class="h-4 w-4"
+                                          viewBox="0 0 512 512"
+                                        >
+                                          <path
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="48"
+                                            d="M328 112L184 256l144 144"
+                                          />
+                                        </svg>
+                                      </span>
+                                    </button>
+                                    <button
+                                      type="button"
+                                      class=""
+                                      aria-label="next"
+                                    >
+                                      <span
+                                        class="inline-flex rounded-lg p-3 bg-blue-50 ring-4 ring-white hover:bg-[#1A56DB] hover:text-white"
+                                      >
+                                        <svg
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          class="h-4 w-4"
+                                          viewBox="0 0 512 512"
+                                        >
+                                          <path
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="48"
+                                            d="M184 112l144 144-144 144"
+                                          />
+                                        </svg>
+                                      </span>
+                                    </button>
+                                  </div>
+                                </div>
+                                <div class="fc-toolbar fc-header-toolbar">
+                                  <div
+                                    class="flex justify-center bg-gray-300 rounded-full"
+                                  >
+                                    <div
+                                      class="flex justify-between w-full p-2"
+                                    >
+                                      <button
+                                        type="button"
+                                        class="flex-1 fc-basicDay-button fc-button fc-state-default fc-corner-left rounded-full py-3 px-4"
+                                      >
+                                        Day
+                                      </button>
+                                      <button
+                                        type="button"
+                                        class="flex-1 fc-basicWeek-button fc-button fc-state-default rounded-full py-3 px-4"
+                                      >
+                                        Week
+                                      </button>
+                                      <button
+                                        type="button"
+                                        class="flex-1 fc-month-button shadow-2xl bg-[#1A56DB] text-white fc-button fc-state-default fc-corner-right fc-state-active rounded-full py-3 px-4"
+                                      >
+                                        Month
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="fc-view-container">
+                                  <div
+                                    class="fc-view fc-month-view fc-basic-view"
+                                  >
+                                    <!-- Calendar content here -->
+                                    <div class="pt-4">
+                                      <div
+                                        class="fc-view fc-month-view fc-basic-view"
+                                      >
+                                        <table class="w-full">
+                                          <thead
+                                            class="text-center border-b border-gray-300"
+                                          >
+                                            <tr>
+                                              <th class="p-2">Sun</th>
+                                              <th class="p-2">Mon</th>
+                                              <th class="p-2">Tue</th>
+                                              <th class="p-2">Wed</th>
+                                              <th class="p-2">Thu</th>
+                                              <th class="p-2">Fri</th>
+                                              <th class="p-2">Sat</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody class="text-center">
+                                            <tr>
+                                              <td class="p-2 text-gray-400">
+                                                31
+                                              </td>
+                                              <td class="p-2">1</td>
+                                              <td
+                                                class="p-2 bg-[#1A56DB] text-white"
+                                              >
+                                                2
+                                              </td>
+                                              <td class="p-2">3</td>
+                                              <td class="p-2">4</td>
+                                              <td class="p-2">5</td>
+                                              <td class="p-2">6</td>
+                                            </tr>
+                                            <tr>
+                                              <td class="p-2">7</td>
+                                              <td class="p-2">8</td>
+                                              <td class="p-2">9</td>
+                                              <td class="p-2">10</td>
+                                              <td class="p-2">11</td>
+                                              <td class="p-2">12</td>
+                                              <td class="p-2">13</td>
+                                            </tr>
+                                            <tr>
+                                              <td class="p-2">14</td>
+                                              <td class="p-2">15</td>
+                                              <td class="p-2">16</td>
+                                              <td class="p-2">17</td>
+                                              <td class="p-2">18</td>
+                                              <td class="p-2">19</td>
+                                              <td class="p-2">20</td>
+                                            </tr>
+                                            <tr>
+                                              <td class="p-2">21</td>
+                                              <td class="p-2">22</td>
+                                              <td class="p-2">23</td>
+                                              <td class="p-2">24</td>
+                                              <td class="p-2">25</td>
+                                              <td class="p-2">26</td>
+                                              <td class="p-2">27</td>
+                                            </tr>
+                                            <tr>
+                                              <td class="p-2">28</td>
+                                              <td class="p-2">29</td>
+                                              <td class="p-2">30</td>
+                                              <td class="p-2 text-gray-400">
+                                                1
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                2
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                3
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                4
+                                              </td>
+                                            </tr>
+
+                                            <tr>
+                                              <td class="p-2 text-gray-400">
+                                                5
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                6
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                7
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                8
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                9
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                10
+                                              </td>
+                                              <td class="p-2 text-gray-400">
+                                                11
+                                              </td>
+                                            </tr>
+                                            <!-- Add more rows for the remaining days -->
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <!-- NOTICED BOARD -->
@@ -1709,98 +1660,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- EARNING SCRIPT -->
-    <script>
-      let options = {
-        chart: {
-          height: "100%",
-          maxWidth: "100%",
-          type: "area",
-          fontFamily: "Inter, sans-serif",
-          dropShadow: {
-            enabled: false,
-          },
-          toolbar: {
-            show: false,
-          },
-        },
-        fill: {
-          type: "solid",
-        },
-        tooltip: {
-          enabled: true,
-          x: {
-            show: true,
-          },
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          width: 3,
-          curve: "smooth",
-        },
-        grid: {
-          show: true,
-          strokeDashArray: 4,
-          padding: {
-            left: 2,
-            right: 2,
-          },
-        },
-        series: [
-          {
-            name: "Total Collection",
-            data: [50000, 10000, 50000, 14000, 70000, 75000],
-            color: "#1A56DB",
-          },
-          {
-            name: "Fee Collection",
-            data: [30000, 20000, 60000, 70000, 50000, 90000],
-            color: "#FF0060",
-          },
-        ],
-        legend: {
-          show: false,
-        },
-        xaxis: {
-          categories: [
-            "01 Feb",
-            "02 Feb",
-            "03 Feb",
-            "04 Feb",
-            "05 Feb",
-            "06 Feb",
-          ],
-          labels: {
-            show: true,
-            style: {
-              fontFamily: "Inter, sans-serif",
-              cssClass: "text-xs font-normal fill-gray-900 ",
-            },
-          },
-          axisBorder: {
-            show: false,
-          },
-          axisTicks: {
-            show: false,
-          },
-        },
-        yaxis: {
-          show: false,
-        },
-      };
-
-      if (
-        document.getElementById("line-chart") &&
-        typeof ApexCharts !== "undefined"
-      ) {
-        const chart = new ApexCharts(
-          document.getElementById("line-chart"),
-          options
-        );
-        chart.render();
-      }
-    </script>
+    <script src="../js/util.js"></script>
+    <script src="../js/charts/line-chart.js"></script>
 
     <!-- EXPENSE SCRIPT -->
     <script>

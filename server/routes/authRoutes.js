@@ -1,8 +1,8 @@
 import { Router } from "express";
-import Handler from "../../handler.js";
+import Controller from "../../controller/controller.js";
 import Validations from "../validation/validation.js";
 
-const { login_post } = new Handler();
+const { login_post } = new Controller();
 const { valid_email, valid_password } = new Validations();
 
 const router = Router();

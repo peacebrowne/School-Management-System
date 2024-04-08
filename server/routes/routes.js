@@ -1,7 +1,7 @@
 import { Router } from "express";
-import Handler from "../../handler.js";
+import Controller from "../../controller/controller.js";
 
-const { login_get, admin_dashboard } = new Handler();
+const { login_get, admin_dashboard } = new Controller();
 
 const router = Router();
 
