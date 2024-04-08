@@ -113,6 +113,10 @@ const handleCreate = (data) => {
   return { columns, values, params };
 };
 
+// new Update().updateEmployee(["position"], ["Dean"], {
+//   id: "7a3e5268-8abe-48c4-afc1-ee47b1e4243b",
+// });
+
 // new Update().updateEmployee(["full_name"], ["Andrew Anderson"], {
 //   id: "445b158c-3428-4b28-bdf0-9d3b23e324e4",
 // });

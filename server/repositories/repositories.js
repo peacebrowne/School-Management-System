@@ -11,6 +11,7 @@ class Transactions {
   write(columns, values) {
     return `INSERT INTO ${this.table} (${columns}) VALUES (${values})`;
   }
+
   read(fields = ["*"], filters = {}, tables = [], conditions = {}) {
     const columns = fields.join(", ");
 
@@ -33,8 +34,18 @@ class Transactions {
     return query;
   }
 
-  update(columns, values, filters) {
-    let query = `UPDATE ${this.table} SET ${columns} WHERE ${filters}`;
+  update(fields, filters) {
+    const columns = fields.map((field) => `${field} = ?`).join(", ");
+
+    let query = `UPDATE ${this.table} SET ${columns} `;
+    const keys = Object.keys(filters);
+
+    if (keys.length) {
+      const filterClauses = keys.map((key) => `${key} = '${filters[key]}'`);
+      const whereClause = ` WHERE ${filterClauses.join(" AND ")}`;
+      query += whereClause;
+    }
+
     return query;
   }
 }
@@ -75,10 +86,12 @@ class Interactions {
 
   updateData = async (table, data) => {
     return await new Promise((resolve, reject) => {
-      const operations = this.update(data.columns, data.values, data.filters);
+      const operations = new Transactions(table).update(
+        data.fields,
+        data.filters
+      );
 
-      console.log(operations);
-      const params = data.params;
+      const params = data.values;
 
       db.run(operations, params, (error) => {
         if (error) return reject(error.message);
