@@ -169,7 +169,7 @@ class Read {
       filters,
     });
 
-    return data[0] ? data[0] : null;
+    return data[0] ? data[0] : false;
   }
 
   async readEmployee(fields, filters) {
