@@ -1,4 +1,4 @@
-import { Create, Read } from "./server/controller/handler.js";
+import { Create, Read, Update } from "./server/controller/handler.js";
 
 const data = [
   {
@@ -18227,24 +18227,6 @@ const employees = [
   },
 ];
 
-const filter = {
-  "students.id": "ef756515-bf4f-4d7f-8006-909dd902e4d9",
-};
-
-const joinTables = ["person"];
-
-const joinCondition = {
-  person: "person.id = students.person_id",
-};
-
-const fields = [
-  "person.id AS person_id",
-  "full_name",
-  "gender",
-  "date_of_birth",
-  "students.id AS student_id",
-];
-
 // ===CREATE TEST===
 // new Create().createEmployee({
 //   departments: "Accounting",
@@ -18261,13 +18243,13 @@ const fields = [
 //   role: "Accountant Manager",
 // });
 
-new Create().createUser({
-  email: "julijafilipović@example.com",
-  password: "julijafilipović@2024",
-  username: "julija",
-  person_id: "0084265d-010a-491f-b225-e550d67847c3",
-  role: ["System Manager"],
-});
+// new Create().createUser({
+//   email: "julijafilipović@example.com",
+//   password: "julijafilipović@2024",
+//   username: "julija",
+//   person_id: "0084265d-010a-491f-b225-e550d67847c3",
+//   role: ["System Manager"],
+// });
 
 // for (const student of students) {
 //   new Create().createStudent(student);
@@ -18288,20 +18270,6 @@ new Create().createUser({
 //   id: "9cba3994-f442-48fe-82e4-6c4c018ed7bb",
 // });
 
-// async function test() {
-//   const t = await new Read().readAll(
-//     "students",
-//     fields,
-//     filter,
-//     joinTables,
-//     joinCondition
-//   );
-
-//   console.log(t);
-// }
-
-// test();
-
 // ===UPDATE TEST===
 // new Update().updateEmployee(["position"], ["Dean"], {
 //   id: "7a3e5268-8abe-48c4-afc1-ee47b1e4243b",
@@ -18310,3 +18278,38 @@ new Create().createUser({
 // new Update().updateEmployee(["full_name"], ["Andrew Anderson"], {
 //   id: "445b158c-3428-4b28-bdf0-9d3b23e324e4",
 // });
+
+// new Update().updateStudent(["middle_name"], ["Peace"], {
+//   id: "00e2e041-d013-4885-828c-6e725d44919a",
+// });
+
+async function test() {
+  const filter = {
+    "students.id": "00e2e041-d013-4885-828c-6e725d44919a",
+  };
+
+  const joinTables = ["person"];
+
+  const joinCondition = {
+    person: "person.id = students.person_id",
+  };
+
+  const fields = [
+    "person.id AS person_id",
+    "first_name",
+    "middle_name",
+    "last_name",
+    "students.id AS student_id",
+  ];
+
+  const t = await new Read().readAll(
+    "students",
+    fields,
+    filter,
+    joinTables,
+    joinCondition
+  );
+  console.log(t);
+}
+
+test();

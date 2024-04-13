@@ -140,12 +140,6 @@ class Read {
     });
     return data;
   }
-  async readEmployee(fields, filters) {
-    const data = await readData("employees", {
-      fields,
-      filters,
-    });
-  }
 
   async readPerson(fields, filters) {
     const data = await readData("person", {
@@ -155,8 +149,38 @@ class Read {
     console.log(data);
   }
 
-  async readRoles(fields, filters) {
-    const data = await readData("roles", {
+  async readEmployee(fields, filters) {
+    const data = await readData("employees", {
+      fields,
+      filters,
+    });
+  }
+
+  async readTeacher(fields, filters) {
+    const data = await readData("teachers", {
+      fields,
+      filters,
+    });
+  }
+
+  async readStudent(fields, filters) {
+    const data = await readData("students", {
+      fields,
+      filters,
+    });
+
+    return data[0] ? data[0] : null;
+  }
+
+  async readEmployee(fields, filters) {
+    const data = await readData("employees", {
+      fields,
+      filters,
+    });
+  }
+
+  async readUser(fields, filters) {
+    const data = await readData("users", {
       fields,
       filters,
     });
@@ -167,6 +191,13 @@ class Read {
 class Update {
   updateEmployee(fields, values, filters) {
     updateData("employees", { fields, values, filters });
+  }
+
+  async updateStudent(fields, values, filters) {
+    const person = await new Read().readStudent(["person_id"], filters);
+
+    const person_filter = { id: person.person_id };
+    updateData("person", { fields, values, filters: person_filter });
   }
 }
 
@@ -180,4 +211,4 @@ const handleCreate = (data) => {
   return { columns, values, params };
 };
 
-export { Create, Read };
+export { Create, Read, Update };
