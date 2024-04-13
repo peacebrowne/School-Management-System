@@ -1,6 +1,6 @@
 let options = {
   chart: {
-    height: "100%",
+    height: "259px",
     maxWidth: "100%",
     type: "area",
     fontFamily: "Inter, sans-serif",
@@ -62,7 +62,7 @@ let options = {
       show: false,
     },
     axisTicks: {
-      show: false,
+      show: true,
     },
   },
   yaxis: {

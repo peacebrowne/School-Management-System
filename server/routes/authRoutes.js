@@ -1,5 +1,5 @@
 import { Router } from "express";
-import Controller from "../../controller/controller.js";
+import Controller from "../controller/controller.js";
 import Validations from "../validation/validation.js";
 
 const { login_post } = new Controller();

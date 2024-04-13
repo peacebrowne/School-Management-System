@@ -1,14 +1,23 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title><%= title %></title>
-<link rel="stylesheet" href="../../css/style.css" />
-<link rel="stylesheet" href="../../css/output.css" />
-
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="../css/style.css" />
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"
+  rel="stylesheet"
+/>
 
-<script
-  src="https://unpkg.com/htmx.org@1.9.10"
-  integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC"
-  crossorigin="anonymous"
-></script>
+<script>
+  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+  if (
+    localStorage.getItem("color-theme") === "dark" ||
+    (!("color-theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches)
+  ) {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>

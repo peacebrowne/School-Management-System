@@ -30,7 +30,6 @@ class Transactions {
       const whereClause = ` WHERE ${filterClauses.join(" AND ")}`;
       query += whereClause;
     }
-
     return query;
   }
 
@@ -99,6 +98,8 @@ class Interactions {
       });
     });
   };
+
+  deleteData = async (table, data) => {};
 }
 
 export default Interactions;

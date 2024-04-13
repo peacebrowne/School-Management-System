@@ -63,3 +63,38 @@
 .bg-light-red {
   background-color: #ffeaea;
 }
+* {
+  scrollbar-width: thin;
+}
+
+/* For WebKit-based browsers (like Chrome and Safari) */
+/* You can adjust the width as needed */
+*::-webkit-scrollbar {
+  width: 2px;
+}
+
+.datepicker-picker,
+.datepicker-view,
+.days,
+.datepicker-grid {
+  width: 100% !important;
+}
+
+.datepicker-picker,
+.days-of-week span {
+  background-color: white !important;
+  color: rgb(55 65 81) !important;
+}
+
+.datepicker-header {
+  display: none !important;
+}
+
+.datepicker-grid span {
+  color: grey !important;
+}
+
+.datepicker-grid > span.selected,
+.datepicker-grid span:hover {
+  color: white !important;
+}

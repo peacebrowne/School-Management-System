@@ -1,59 +1,744 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%- include('./partials/head'); %>
+    <%- include('partials/head.ejs') -%>
   </head>
   <body>
-    <div>
-      <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-      <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
-        <div class="fixed inset-0 bg-gray-900/80"></div>
+    <div class="antialiased bg-gray-50">
+      <!-- Sidebar -->
 
-        <div class="fixed inset-0 flex">
-          <div class="relative mr-16 flex w-full max-w-xs flex-1">
-            <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-              <button type="button" class="-m-2.5 p-2.5">
-                <span class="sr-only">Close sidebar</span>
-                <svg
-                  class="h-6 w-6 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
+      <button
+        data-drawer-target="default-sidebar"
+        data-drawer-toggle="default-sidebar"
+        aria-controls="default-sidebar"
+        type="button"
+        class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      >
+        <span class="sr-only">Open sidebar</span>
+        <svg
+          class="w-6 h-6"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+          ></path>
+        </svg>
+      </button>
 
-            <!-- Sidebar component, swap this element with another sidebar if you like -->
+      <!-- SIDEBAR -->
+      <%- include('partials/sidebar.ejs') -%>
+
+      <div>
+        <main class="md:ml-72 h-auto pb-20 bg-[#d9dcdf]">
+          <!-- HEADER -->
+          <%- include('partials/header.ejs') -%>
+
+          <!-- BREADCRUMB -->
+          <section class="px-16">
+            <%- include('partials/breadcrumbs.ejs') -%>
+          </section>
+
+          <!-- CARDS -->
+          <section class="px-16">
             <div
-              class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10"
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4"
             >
-              <div class="flex h-16 shrink-0 items-center">
-                <img
-                  class="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                  alt="Your Company"
-                />
-              </div>
-              <nav class="flex flex-1 flex-col">
-                <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                  <li>
-                    <ul role="list" class="-mx-2 space-y-1">
-                      <li>
-                        <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
-                        <a
-                          href="#"
-                          class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+              <!-- STUDENTS CARD -->
+              <div class="border-2 border-gray-300 rounded-lg">
+                <div class="bg-white p-3 rounded-lg shadow">
+                  <div class="flex flex-col">
+                    <div
+                      class="flex flex-row items-center justify-between px-4 pt-4"
+                    >
+                      <div class="flex mr-4">
+                        <span
+                          class="items-center px-5 py-5 m-auto bg-light-green rounded-full"
                         >
                           <svg
-                            class="h-6 w-6 shrink-0"
+                            class="items-center w-8 h-8 m-auto"
+                            fill="#20c997"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 512.002 512.002"
+                            xml:space="preserve"
+                            stroke="#FF0060"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                            <g
+                              id="SVGRepo_tracerCarrier"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+
+                            <g id="SVGRepo_iconCarrier">
+                              <g>
+                                <g>
+                                  <path
+                                    d="M433.311,223.607l-28.91-9.127c-20.015-6.317-31.12-27.665-24.801-47.68c3.401-10.775,11.16-18.96,20.72-23.243 c1.902-7.119,6.974-26.116,11.203-41.95c-33.264,0-35.735,0-83.862,0c-25.75,0-46.805,20.949-46.934,46.699l-0.732,145.704 c-0.055,10.953,8.78,19.877,19.733,19.932c0.034,0,0.068,0,0.102,0c10.906,0,19.776-8.814,19.83-19.733l0.732-145.704 c0.011-2.17,1.776-3.922,3.945-3.915c2.169,0.007,3.924,1.766,3.924,3.935l0.009,333.378c0,13.144,10.655,23.799,23.799,23.799 s23.799-10.655,23.799-23.799V291.672h10.276v190.232c0,13.144,10.655,23.799,23.799,23.799s23.799-10.655,23.799-23.799 C433.742,464.51,433.311,241.01,433.311,223.607z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <circle cx="380.998" cy="47.403" r="41.104" />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M510.052,193.842c-3.504-7.413-25.679-54.323-29.313-62.011c-6.954-14.712-20.365-25.245-35.867-28.854l-10.256,38.401 c3.849,0.478,7.32,2.655,9.425,5.911c0.702,1.086,0.008-0.26,10.741,22.445c-8.604-2.716-14.056-4.437-32.971-10.408 c-10.446-3.295-21.586,2.498-24.883,12.943c-3.237,10.256,2.372,21.546,12.943,24.883l76.281,24.079 C502.622,226.429,517.435,209.461,510.052,193.842z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M183.574,223.607l-28.911-9.127c-11.02-3.478-19.33-11.518-23.526-21.378c-4.196,9.86-12.505,17.899-23.526,21.378 l-29.087,9.182l0.009,258.242c0,13.144,10.655,23.799,23.799,23.799s23.799-10.655,23.799-23.799V291.672h10.276v190.232 c0,13.144,10.655,23.799,23.799,23.799c13.145,0,23.799-10.655,23.799-23.799C184.005,464.511,183.574,241.01,183.574,223.607z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <circle cx="131.27" cy="47.403" r="41.104" />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M100.488,101.606c4.139,15.495,6.707,25.108,11.204,41.951c8.512,3.813,15.594,10.724,19.444,19.8 c3.85-9.078,10.932-15.988,19.444-19.801c1.893-7.088,6.97-26.097,11.203-41.95C158.679,101.606,130.027,101.606,100.488,101.606z "
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M260.314,193.841c-3.504-7.412-25.679-54.321-29.313-62.01c-6.954-14.712-20.365-25.245-35.867-28.854l-10.256,38.401 c4.476,0.555,8.368,3.398,10.261,7.404l9.903,20.95c-8.604-2.716-14.056-4.437-32.971-10.408 c-10.445-3.295-21.586,2.498-24.883,12.943c-3.238,10.256,2.372,21.546,12.943,24.883l76.281,24.079 C252.884,226.428,267.698,209.458,260.314,193.841z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M115.084,172.269c-3.297-10.445-14.436-16.24-24.883-12.942L57.23,169.735l9.903-20.95 c1.898-4.016,5.794-6.85,10.261-7.404l-10.256-38.401c-15.502,3.608-28.912,14.142-35.867,28.854 c-3.684,7.794-26.284,55.602-29.313,62.011c-7.45,15.76,7.624,32.525,23.901,27.389l76.281-24.079 C112.787,193.791,118.306,182.474,115.084,172.269z"
+                                  />
+                                </g>
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="flex-1 pl-1">
+                        <div class="text-sm text-gray-400 sm:text-base">
+                          Students
+                        </div>
+                        <div class="text-xl font-medium text-black">150000</div>
+                      </div>
+                    </div>
+                    <div class="px-4 pt-px pb-2">
+                      <div
+                        class="flex flex-row items-center justify-end w-full py-px text-base text-gray-400"
+                      >
+                        <div
+                          class="flex items-center justify-between space-x-2"
+                        >
+                          <span
+                            class="flex items-center text-[#2C7865] gap-1 text-sm font-medium text-meta-3"
+                          >
+                            0.43%
+                            <svg
+                              class="fill-meta-3"
+                              width="10"
+                              height="11"
+                              viewBox="0 0 10 11"
+                              fill="#2C7865"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                                fill=""
+                              ></path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TEACHERS CARD -->
+              <div class="border-2 rounded-lg border-gray-300">
+                <div class="bg-white p-3 rounded-lg shadow">
+                  <div class="flex flex-col">
+                    <div
+                      class="flex flex-row items-center justify-between px-4 pt-4"
+                    >
+                      <div class="flex mr-4">
+                        <span
+                          class="items-center px-5 py-5 m-auto bg-blue-200 rounded-full"
+                        >
+                          <svg
+                            class="items-center w-8 h-8 m-auto"
+                            fill="#2563eb"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 512.002 512.002"
+                            xml:space="preserve"
+                            stroke="#2563eb"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                            <g
+                              id="SVGRepo_tracerCarrier"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+
+                            <g id="SVGRepo_iconCarrier">
+                              <g>
+                                <g>
+                                  <circle cx="392.353" cy="42.318" r="42.124" />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M499.406,338.088c0-4.626-3.75-8.376-8.376-8.376h-3.545v-18.347c1.476-1.116,2.794-2.423,3.918-3.893 c2.634-3.446,4.206-7.746,4.183-12.421l-0.751-149.322c-0.131-26.391-21.709-47.859-48.098-47.859h-20.833 c-2.662,6.956-22.34,58.364-25.196,65.825l5.941-27.984c0.417-1.966,0.115-4.015-0.853-5.775l-8.158-14.837l7.252-13.19 c1.08-1.964-0.343-4.375-2.588-4.375h-19.905c-2.24,0-3.669,2.408-2.588,4.375l7.252,13.19l-8.188,14.893 c-0.95,1.727-1.259,3.733-0.875,5.667l5.194,28.037c-2.635-6.759-22.113-58.59-24.936-65.825h-20.637 c-26.39,0-47.966,21.469-48.099,47.859l-0.75,149.323c-0.057,11.226,8.998,20.371,20.223,20.427c0.034,0,0.07,0,0.105,0 c11.178,0,20.267-9.033,20.324-20.223l0.75-149.323c0-0.018,0-0.036,0-0.053c0.027-2.158,1.79-3.89,3.948-3.877 c2.158,0.013,3.9,1.767,3.9,3.926l0.01,341.681c0,13.47,10.92,24.391,24.391,24.391s24.391-10.92,24.391-24.391V292.654h10.531 v194.955c0,13.47,10.92,24.391,24.391,24.391s24.391-10.92,24.391-24.391v-41.545c-9.727-5.136-16.375-15.352-16.375-27.095 v-80.881c0-11.744,6.648-21.959,16.375-27.096c0-17.223-0.332-133.71-0.421-164.837c-0.007-2.306,1.828-4.195,4.133-4.255 c2.305-0.06,4.238,1.729,4.352,4.031c0,0.001,0,0.001,0,0.002l0.751,149.323c0.023,4.611,1.598,8.841,4.201,12.237 c1.315,1.715,2.883,3.224,4.67,4.445v17.773h-3.436c-4.626,0-8.376,3.75-8.376,8.376v80.881c0,4.626,3.75,8.376,8.376,8.376 h30.661c4.626,0,8.376-3.75,8.376-8.376v-80.881H499.406z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <circle cx="147.601" cy="42.141" r="42.141" />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M228.266,326.652l-14.438-74.548l-33.6,21.448c-8.458,5.399-18.895,7.18-29.115,4.347l-28.103,8.151 c-1.903,0.552-3.868,0.832-5.839,0.832c-9.257,0-17.523-6.213-20.104-15.109l-11.701-40.339l-15.815,81.65 c7.688,5.569,12.702,14.612,12.702,24.81v2.214c3.401,0,7.183,0,11.275,0v147.493c0,13.475,10.924,24.4,24.4,24.4 c13.475,0,24.4-10.923,24.4-24.4V340.108c3.508,0,7.027,0,10.535,0v147.493c0,13.475,10.924,24.4,24.4,24.4s24.4-10.923,24.4-24.4 V340.108c5.883,0,11.137,0,15.516,0C224.267,340.108,229.619,333.638,228.266,326.652z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M89.881,171.841c15.619-4.53,31.144-9.033,47.057-13.649c-1.828-4.688-4.328-11.098-23.582-60.478h-0.987 c-21.762,0-37.58,13.919-47.014,41.37c-14.619,42.544-47.82,133.38-48.153,134.292c-3.199,8.75,0.002,18.261,7.203,23.455 c0,17.067,0,14.407,0,32.686h-3.436c-4.626,0-8.376,3.75-8.376,8.377v80.881c0,4.626,3.75,8.376,8.376,8.376h30.659 c4.626,0,8.376-3.75,8.376-8.376v-80.881c0-4.627-3.75-8.377-8.376-8.377h-3.545c0-11.744,0-20.903,0-32.6 c3.238-2.301,5.844-5.565,7.311-9.577c0.204-0.557,12.634-34.566,25.658-70.777l-5.448-18.781 C72.388,186.695,78.793,175.057,89.881,171.841z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M161.315,130.855l-8.158-14.837l7.252-13.19c1.08-1.964-0.343-4.375-2.588-4.375h-19.905c-2.24,0-3.669,2.409-2.588,4.375 l7.252,13.19l-8.188,14.893c-0.95,1.727-1.259,3.733-0.876,5.667l4.244,21.375c6.251-1.813,8.135-2.556,11.783-2.556 c2.904,0,5.709,0.613,8.273,1.727l4.35-20.492C162.587,134.666,162.283,132.616,161.315,130.855z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M153.622,175.154c-0.633-2.184-2.949-3.573-5.268-2.898l-53.824,15.611c-2.252,0.653-3.552,3.017-2.899,5.267 l21.462,73.991c0.635,2.19,3.023,3.551,5.268,2.898l14.357-4.164c-0.855-1.056-1.67-2.158-2.417-3.331 c-10.744-16.83-5.809-39.185,11.021-49.928l19.544-12.475L153.622,175.154z"
+                                  />
+                                </g>
+                              </g>
+                              <g>
+                                <g>
+                                  <path
+                                    d="M248.639,192.318c-4.153-11.54-7.283-20.289-10.049-28.103c-3.074-8.688-5.694-16.219-8.756-25.129 c-9.434-27.452-25.252-41.37-47.014-41.37h-0.985c-4.458,11.646-18.727,48.924-22.939,59.927 c5.095,2.566,9.097,7.159,10.751,12.865l5.877,20.261l23.896-15.253l0.026-0.017c1.652,4.682,3.416,9.643,5.44,15.299 l-55.051,35.142c-9.466,6.043-12.24,18.614-6.199,28.078c6.042,9.466,18.614,12.243,28.08,6.199l68.732-43.873 C248.455,211.231,251.856,201.256,248.639,192.318z"
+                                  />
+                                </g>
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="flex-1 pl-1">
+                        <div class="text-sm text-gray-400 sm:text-base">
+                          Teachers
+                        </div>
+                        <div class="text-xl font-medium text-black">2250</div>
+                      </div>
+                    </div>
+                    <div class="px-4 pt-px pb-2">
+                      <div
+                        class="flex flex-row items-center justify-end w-full py-px text-base text-gray-400"
+                      >
+                        <div
+                          class="flex items-center justify-between space-x-2"
+                        >
+                          <span
+                            class="flex items-center text-[#2C7865] gap-1 text-sm font-medium text-meta-3"
+                          >
+                            0.43%
+                            <svg
+                              class="fill-meta-3"
+                              width="10"
+                              height="11"
+                              viewBox="0 0 10 11"
+                              fill="#2C7865"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                                fill=""
+                              ></path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- PARENTS CARD -->
+              <div class="border-2 rounded-lg border-gray-300">
+                <div class="bg-white p-3 rounded-lg shadow">
+                  <div class="flex flex-col">
+                    <div
+                      class="flex flex-row items-center justify-between px-4 pt-4"
+                    >
+                      <div class="flex mr-4">
+                        <span
+                          class="items-center px-5 py-5 m-auto bg-light-yellow rounded-full"
+                        >
+                          <svg
+                            class="items-center w-8 h-8 m-auto"
+                            fill="#fd7e14"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 512.002 512.002"
+                            xml:space="preserve"
+                            stroke="#fd7e14"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                            <g
+                              id="SVGRepo_tracerCarrier"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+
+                            <g id="SVGRepo_iconCarrier">
+                              <style type="text/css">
+                                .st0 {
+                                  fill: #fd7e14;
+                                }
+                              </style>
+                              <g>
+                                <path
+                                  class="st0"
+                                  d="M78.642,118.933c22.879,0,41.415-18.551,41.415-41.414c0-22.888-18.536-41.423-41.415-41.423 c-22.887,0-41.422,18.535-41.422,41.423C37.219,100.383,55.755,118.933,78.642,118.933z"
+                                />
+                                <path
+                                  class="st0"
+                                  d="M255.706,228.731v0.062c0.101,0,0.193-0.031,0.294-0.031c0.101,0,0.194,0.031,0.294,0.031v-0.062 c15.563-0.317,28.082-12.976,28.082-28.601c0-15.648-12.52-28.299-28.082-28.617v-0.062c-0.1,0-0.193,0.031-0.294,0.031 c-0.101,0-0.193-0.031-0.294-0.031v0.062c-15.563,0.318-28.082,12.969-28.082,28.617 C227.624,215.754,240.143,228.413,255.706,228.731z"
+                                />
+                                <path
+                                  class="st0"
+                                  d="M433.358,118.933c22.887,0,41.423-18.551,41.423-41.414c0-22.888-18.536-41.423-41.423-41.423 c-22.879,0-41.414,18.535-41.414,41.423C391.944,100.383,410.48,118.933,433.358,118.933z"
+                                />
+                                <path
+                                  class="st0"
+                                  d="M512,319.675V180.463c0-20.076-21.834-41.91-41.903-41.91h-5.799l-28.818,28.818l-28.214-28.214 c-17.839,2.609-33.564,13.665-41.918,30.018l-33.494,97.967c-1.154,2.245-3.298,3.84-5.792,4.281 c-2.493,0.442-5.048-0.31-6.914-2.036l-20.835-18.04c-6.232-5.769-14.409-8.974-22.902-8.974H256h-19.41 c-8.494,0-16.67,3.206-22.903,8.974l-20.835,18.04c-1.866,1.726-4.422,2.478-6.914,2.036c-2.494-0.442-4.638-2.036-5.792-4.281 l-33.494-97.967c-9.6-18.791-28.926-30.622-50.032-30.622H78.216H41.903C21.834,138.553,0,160.387,0,180.463v139.211 c0,10.035,8.13,18.172,18.165,18.172c4.939,0,0,0,12.682,0l6.906,118.724c0,10.677,8.664,19.333,19.341,19.333 c4.506,0,12.814,0,21.122,0c8.307,0,16.615,0,21.121,0c10.677,0,19.341-8.656,19.341-19.333l6.906-118.724l-0.086-84.765 c0-1.339,0.914-2.493,2.222-2.818c1.309-0.31,2.648,0.309,3.26,1.502l26.573,65.401c3.205,6.256,9.152,10.654,16.074,11.886 c6.921,1.23,14.021-0.844,19.186-5.614l25.426-18.729c0.852-0.782,2.083-0.983,3.136-0.542c1.061,0.472,1.742,1.518,1.742,2.663 l0.094,73.508l4.777,82.187c0,7.387,6,13.379,13.395,13.379c3.112,0,8.865,0,14.618,0c5.753,0,11.506,0,14.618,0 c7.394,0,13.394-5.992,13.394-13.379l4.777-82.187l0.093-73.508c0-1.146,0.681-2.192,1.742-2.663 c1.053-0.442,2.284-0.24,3.136,0.542l25.426,18.729c5.164,4.77,12.264,6.844,19.187,5.614c6.921-1.231,12.868-5.629,16.073-11.886 l26.572-65.401c0.612-1.192,1.951-1.812,3.26-1.502c1.308,0.325,2.222,1.479,2.222,2.818l-0.031,32.332l-27.881,86.648 c-0.659,2.051-0.302,4.296,0.967,6.039c1.27,1.742,3.298,2.772,5.451,2.772h23.91l4.405,75.699 c0,10.677,8.664,19.333,19.341,19.333c4.506,0,12.814,0,21.121,0c8.308,0,16.615,0,21.122,0c10.677,0,19.34-8.656,19.34-19.333 l4.406-75.699h26.418c2.152,0,4.181-1.03,5.451-2.772c1.27-1.743,1.626-3.988,0.968-6.039L500.1,336.67 C507.037,334.107,512,327.495,512,319.675z M85.424,159.087v74.592H63.389v-74.592H85.424z"
+                                />
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="flex-1 pl-1">
+                        <div class="text-sm text-gray-400 sm:text-base">
+                          Parents
+                        </div>
+                        <div class="text-xl font-medium text-black">5690</div>
+                      </div>
+                    </div>
+                    <div class="px-4 pt-px pb-2">
+                      <div
+                        class="flex flex-row items-center justify-end w-full py-px text-base text-gray-400"
+                      >
+                        <div
+                          class="flex items-center justify-between space-x-2"
+                        >
+                          <span
+                            class="flex items-center text-[#2C7865] gap-1 text-sm font-medium text-meta-3"
+                          >
+                            0.43%
+                            <svg
+                              class="fill-meta-3"
+                              width="10"
+                              height="11"
+                              viewBox="0 0 10 11"
+                              fill="#2C7865"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
+                                fill=""
+                              ></path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- EARNINGS CARD -->
+              <div class="border-2 rounded-lg border-gray-300">
+                <div class="bg-white p-3 rounded-lg shadow">
+                  <div class="flex flex-col">
+                    <div
+                      class="flex flex-row items-center justify-between px-4 pt-4"
+                    >
+                      <div class="flex mr-4">
+                        <span
+                          class="items-center px-5 py-5 m-auto bg-light-red rounded-full"
+                        >
+                          <svg
+                            class="tems-center w-8 h-8 m-auto"
+                            xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+                            xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 64 38"
+                            xml:space="preserve"
+                            fill="#FF0060"
+                          >
+                            <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+                            <g
+                              id="SVGRepo_tracerCarrier"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+
+                            <g id="SVGRepo_iconCarrier">
+                              <g id="Page-1" sketch:type="MSPage">
+                                <g
+                                  id="Cash-dollar"
+                                  transform="translate(1.000000, 1.000000)"
+                                  sketch:type="MSLayerGroup"
+                                >
+                                  <path
+                                    id="Shape"
+                                    sketch:type="MSShapeGroup"
+                                    fill="none"
+                                    stroke="#ea0606"
+                                    stroke-width="2"
+                                    d="M60,36c1.1,0,2-0.9,2-2V2 c0-1.1-0.9-2-2-2H2C0.9,0,0,0.9,0,2v32c0,1.1,0.9,2,2,2H60L60,36z"
+                                  />
+                                  <path
+                                    id="Shape_1_"
+                                    sketch:type="MSShapeGroup"
+                                    fill="none"
+                                    stroke="#ea0606"
+                                    stroke-width="2"
+                                    d="M5,4h20.9"
+                                  />
+                                  <path
+                                    id="Shape_2_"
+                                    sketch:type="MSShapeGroup"
+                                    fill="none"
+                                    stroke="#ea0606"
+                                    stroke-width="2"
+                                    d="M5,32h20.9"
+                                  />
+                                  <path
+                                    id="Shape_3_"
+                                    sketch:type="MSShapeGroup"
+                                    fill="none"
+                                    stroke="#ea0606"
+                                    stroke-width="2"
+                                    d="M36.2,4H57"
+                                  />
+                                  <path
+                                    id="Shape_4_"
+                                    sketch:type="MSShapeGroup"
+                                    fill="none"
+                                    stroke="#ea0606"
+                                    stroke-width="2"
+                                    d="M36.2,32H57"
+                                  />
+                                  <circle
+                                    id="Oval"
+                                    sketch:type="MSShapeGroup"
+                                    fill="none"
+                                    stroke="#ea0606"
+                                    stroke-width="2"
+                                    cx="31"
+                                    cy="18"
+                                    r="15"
+                                  ></circle>
+                                  <path
+                                    id="Shape_5_"
+                                    sketch:type="MSShapeGroup"
+                                    fill="none"
+                                    stroke="#ea0606"
+                                    stroke-width="2"
+                                    d="M27.1,22.4c0,2,1.8,3.6,4,3.6 s4-1.6,4-3.6c0-2.9-4-4.4-4-4.4s-4-1.5-4-4.4c0-2,1.8-3.6,4-3.6s4,1.6,4,3.6"
+                                  />
+                                  <path
+                                    id="Shape_6_"
+                                    sketch:type="MSShapeGroup"
+                                    fill="none"
+                                    stroke="#ea0606"
+                                    stroke-width="2"
+                                    d="M31.1,6.1V30"
+                                  />
+                                </g>
+                              </g>
+                            </g>
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="flex-1 pl-1">
+                        <div class="text-sm text-gray-400 sm:text-base">
+                          Earnings
+                        </div>
+                        <div class="text-xl font-medium text-black">
+                          $193000
+                        </div>
+                      </div>
+                    </div>
+                    <div class="px-4 pt-px pb-2">
+                      <div
+                        class="flex flex-row items-center justify-end w-full py-px text-base text-gray-400"
+                      >
+                        <div
+                          class="flex items-center justify-between space-x-2"
+                        >
+                          <span
+                            class="flex items-center text-[#ea0606] gap-1 text-sm font-medium text-meta-3"
+                          >
+                            0.95%
+                            <svg
+                              class="fill-meta-5"
+                              width="10"
+                              height="11"
+                              viewBox="0 0 10 11"
+                              fill="#ea0606"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5.64284 7.69237L9.09102 4.33987L10 5.22362L5 10.0849L-8.98488e-07 5.22362L0.908973 4.33987L4.35716 7.69237L4.35716 0.0848701L5.64284 0.0848704L5.64284 7.69237Z"
+                                fill=""
+                              ></path>
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- CHARTS -->
+          <section class="px-16">
+            <div
+              class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4 rounded-lg border-gray-300 mb-2"
+            >
+              <!-- LINE CHARTS 01 -->
+              <div class="border-2 col-span-2 rounded-lg border-gray-300">
+                <%- include('./charts/line-chart'); %>
+              </div>
+
+              <!-- BAR CHART -->
+              <div class="border-2 rounded-lg border-gray-300">
+                <%- include('./charts/bar-chart'); %>
+              </div>
+
+              <!-- DONUT CHART -->
+              <div class="border-2 rounded-lg border-gray-300">
+                <%- include('./charts/donut-chart'); %>
+              </div>
+            </div>
+          </section>
+
+          <!-- NOTICED -->
+          <section class="px-16">
+            <div class="sm:rounded-lg grid grid-cols-5 gap-4 mb-4 mt-4">
+              <div class="border-2 col-span-2 rounded-lg border-gray-300">
+                <div class="bg-white p-7 rounded-lg shadow">
+                  <div class="item-title pb-4">
+                    <div class="flex justify-between items-center">
+                      <h5 class="leading-none text-2xl font-bold text-gray-900">
+                        Event Calender
+                      </h5>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-between px-8 pb-6 items-center">
+                    <h4 class="font-bold">August</h4>
+                    <div>
+                      <button
+                        type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-4 w-4"
+                          viewBox="0 0 512 512"
+                        >
+                          <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="48"
+                            d="M328 112L184 256l144 144"
+                          />
+                        </svg>
+                      </button>
+                      <button
+                        type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-4 w-4"
+                          viewBox="0 0 512 512"
+                        >
+                          <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="48"
+                            d="M184 112l144 144-144 144"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="bg-gray-300 rounded-full">
+                    <ul
+                      class="flex flex-wrap justify-between w-full text-sm font-medium text-center p-2"
+                      id="default-styled-tab"
+                      data-tabs-toggle="#default-styled-tab-content"
+                      data-tabs-active-classes="text-white hover:text-white bg-[#1A56DB]"
+                      data-tabs-inactive-classes="border-transparent text-gray-500 text-gray-400"
+                      role="tablist"
+                    >
+                      <li
+                        id="profile-styled-tab"
+                        data-tabs-target="#styled-profile"
+                        role="tab"
+                        aria-controls="profile"
+                        aria-selected="false"
+                        class="me-2 fc-month-button flex-1 rounded-full fc-state-default fc-corner-right fc-state-active"
+                        role="presentation"
+                      >
+                        <button
+                          class="shadow-2x fc-button py-3 px-4"
+                          type="button"
+                        >
+                          Day
+                        </button>
+                      </li>
+                      <li
+                        class="me-2 fc-month-button flex-1 rounded-full fc-state-default fc-corner-right fc-state-active"
+                        id="dashboard-styled-tab"
+                        data-tabs-target="#styled-dashboard"
+                        role="tab"
+                        aria-controls="dashboard"
+                        aria-selected="false"
+                        role="presentation"
+                      >
+                        <button
+                          class="shadow-2x fc-button py-3 px-4"
+                          type="button"
+                        >
+                          Week
+                        </button>
+                      </li>
+                      <li
+                        class="me-2 fc-month-button flex-1 rounded-full fc-state-default fc-corner-right fc-state-active"
+                        id="settings-styled-tab"
+                        data-tabs-target="#styled-settings"
+                        role="tab"
+                        aria-controls="settings"
+                        aria-selected="false"
+                        role="presentation"
+                      >
+                        <button
+                          class="shadow-2x fc-button py-3 px-4"
+                          type="button"
+                        >
+                          Month
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                  <div id="default-styled-tab-content">
+                    <div
+                      class="hidden p-4 rounded-lg bg-gray-50"
+                      id="styled-profile"
+                      role="tabpanel"
+                      aria-labelledby="profile-tab"
+                    >
+                      <div
+                        id="myDatepicker"
+                        inline-datepicker
+                        data-date="02/25/2022"
+                      ></div>
+                    </div>
+                    <div
+                      class="hidden p-4 rounded-lg bg-gray-50"
+                      id="styled-dashboard"
+                      role="tabpanel"
+                      aria-labelledby="dashboard-tab"
+                    >
+                      <div
+                        id="myDatepicker"
+                        inline-datepicker
+                        data-date="02/25/2022"
+                      ></div>
+                    </div>
+                    <div
+                      class="hidden p-4 rounded-lg bg-gray-50"
+                      id="styled-settings"
+                      role="tabpanel"
+                      aria-labelledby="settings-tab"
+                    >
+                      <div
+                        id="myDatepicker"
+                        inline-datepicker
+                        data-date="02/25/2022"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="border-2 col-span-3 rounded-lg border-gray-300">
+                <div class="bg-white rounded-lg p-4 md:p-6 h-full">
+                  <h5
+                    class="leading-none text-2xl font-bold text-gray-900 pb-4"
+                  >
+                    Noticed Board
+                  </h5>
+
+                  <div
+                    class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0"
+                  >
+                    <div
+                      class="rounded-tl-lg rounded-tr-lg sm:rounded-tr-none group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+                    >
+                      <div>
+                        <span
+                          class="inline-flex rounded-lg p-3 bg-teal-50 text-teal-700 ring-4 ring-white"
+                        >
+                          <svg
+                            class="h-6 w-6"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
@@ -63,19 +748,111 @@
                             <path
                               stroke-linecap="round"
                               stroke-linejoin="round"
-                              d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                              d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
                             />
                           </svg>
-                          Dashboard
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                        </span>
+                      </div>
+                      <div class="mt-8">
+                        <h3
+                          class="text-base font-semibold leading-6 text-gray-900"
+                        >
+                          <a href="#" class="focus:outline-none">
+                            <!-- Extend touch target to entire panel -->
+                            <span
+                              class="absolute inset-0"
+                              aria-hidden="true"
+                            ></span>
+                            Request time off
+                          </a>
+                        </h3>
+                        <p class="mt-2 text-sm text-gray-500">
+                          Doloribus dolores nostrum quia qui natus officia quod
+                          et dolorem. Sit repellendus qui ut at blanditiis et
+                          quo et molestiae.
+                        </p>
+                      </div>
+                      <span
+                        class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          class="h-6 w-6"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div
+                      class="sm:rounded-tr-lg group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+                    >
+                      <div>
+                        <span
+                          class="inline-flex rounded-lg p-3 bg-purple-50 text-purple-700 ring-4 ring-white"
                         >
                           <svg
-                            class="h-6 w-6 shrink-0"
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="mt-8">
+                        <h3
+                          class="text-base font-semibold leading-6 text-gray-900"
+                        >
+                          <a href="#" class="focus:outline-none">
+                            <!-- Extend touch target to entire panel -->
+                            <span
+                              class="absolute inset-0"
+                              aria-hidden="true"
+                            ></span>
+                            Benefits
+                          </a>
+                        </h3>
+                        <p class="mt-2 text-sm text-gray-500">
+                          Doloribus dolores nostrum quia qui natus officia quod
+                          et dolorem. Sit repellendus qui ut at blanditiis et
+                          quo et molestiae.
+                        </p>
+                      </div>
+                      <span
+                        class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          class="h-6 w-6"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div
+                      class="group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+                    >
+                      <div>
+                        <span
+                          class="inline-flex rounded-lg p-3 bg-sky-50 text-sky-700 ring-4 ring-white"
+                        >
+                          <svg
+                            class="h-6 w-6"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke-width="1.5"
@@ -88,1575 +865,1059 @@
                               d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
                             />
                           </svg>
-                          Team
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                        </span>
+                      </div>
+                      <div class="mt-8">
+                        <h3
+                          class="text-base font-semibold leading-6 text-gray-900"
                         >
-                          <svg
-                            class="h-6 w-6 shrink-0"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
-                            />
-                          </svg>
-                          Projects
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          <a href="#" class="focus:outline-none">
+                            <!-- Extend touch target to entire panel -->
+                            <span
+                              class="absolute inset-0"
+                              aria-hidden="true"
+                            ></span>
+                            Schedule a one-on-one
+                          </a>
+                        </h3>
+                        <p class="mt-2 text-sm text-gray-500">
+                          Doloribus dolores nostrum quia qui natus officia quod
+                          et dolorem. Sit repellendus qui ut at blanditiis et
+                          quo et molestiae.
+                        </p>
+                      </div>
+                      <span
+                        class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          class="h-6 w-6"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
                         >
-                          <svg
-                            class="h-6 w-6 shrink-0"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
-                            />
-                          </svg>
-                          Calendar
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                        >
-                          <svg
-                            class="h-6 w-6 shrink-0"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
-                            />
-                          </svg>
-                          Documents
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                        >
-                          <svg
-                            class="h-6 w-6 shrink-0"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            aria-hidden="true"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
-                            />
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
-                            />
-                          </svg>
-                          Reports
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>
-                    <div class="text-xs font-semibold leading-6 text-gray-400">
-                      Your teams
+                          <path
+                            d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"
+                          />
+                        </svg>
+                      </span>
                     </div>
-                    <ul role="list" class="-mx-2 mt-2 space-y-1">
-                      <li>
-                        <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
-                        <a
-                          href="#"
-                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                    <div
+                      class="group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+                    >
+                      <div>
+                        <span
+                          class="inline-flex rounded-lg p-3 bg-yellow-50 text-yellow-700 ring-4 ring-white"
                         >
-                          <span
-                            class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                            >H</span
+                          <svg
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            aria-hidden="true"
                           >
-                          <span class="truncate">Heroicons</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                      <div class="mt-8">
+                        <h3
+                          class="text-base font-semibold leading-6 text-gray-900"
                         >
-                          <span
-                            class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                            >T</span
-                          >
-                          <span class="truncate">Tailwind Labs</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
+                          <a href="#" class="focus:outline-none">
+                            <!-- Extend touch target to entire panel -->
+                            <span
+                              class="absolute inset-0"
+                              aria-hidden="true"
+                            ></span>
+                            Payroll
+                          </a>
+                        </h3>
+                        <p class="mt-2 text-sm text-gray-500">
+                          Doloribus dolores nostrum quia qui natus officia quod
+                          et dolorem. Sit repellendus qui ut at blanditiis et
+                          quo et molestiae.
+                        </p>
+                      </div>
+                      <span
+                        class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
+                        aria-hidden="true"
+                      >
+                        <svg
+                          class="h-6 w-6"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
                         >
-                          <span
-                            class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                            >W</span
-                          >
-                          <span class="truncate">Workcation</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="mt-auto">
-                    <a
-                      href="#"
-                      class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
-                    >
-                      <svg
-                        class="h-6 w-6 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                        />
-                      </svg>
-                      Settings
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Static sidebar for desktop -->
-      <div
-        class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
-      >
-        <!-- Sidebar component, swap this element with another sidebar if you like -->
-        <div
-          class="flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-4 bg-green-700"
-          style="background-color: #1c6758"
-        >
-          <div class="flex h-16 shrink-0 items-center">
-            <img
-              class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-              alt="Your Company"
-            />
-          </div>
-          <nav class="flex flex-1 flex-col">
-            <ul role="list" class="flex flex-1 flex-col gap-y-7">
-              <li>
-                <ul role="list" class="-mx-2 space-y-1">
-                  <li>
-                    <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
-                    <a
-                      href="#"
-                      class="bg-gray-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                      style="background-color: #12372a"
-                    >
-                      <svg
-                        class="h-6 w-6 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-                        />
-                      </svg>
-                      Dashboard
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                    >
-                      <svg
-                        class="h-6 w-6 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
-                        />
-                      </svg>
-                      Team
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                    >
-                      <svg
-                        class="h-6 w-6 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
-                        />
-                      </svg>
-                      Projects
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                    >
-                      <svg
-                        class="h-6 w-6 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"
-                        />
-                      </svg>
-                      Calendar
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                    >
-                      <svg
-                        class="h-6 w-6 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
-                        />
-                      </svg>
-                      Documents
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                    >
-                      <svg
-                        class="h-6 w-6 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        aria-hidden="true"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"
-                        />
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"
-                        />
-                      </svg>
-                      Reports
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <div class="text-xs font-semibold leading-6 text-gray-400">
-                  Your teams
+                          <path
+                            d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <ul role="list" class="-mx-2 mt-2 space-y-1">
-                  <li>
-                    <!-- Current: "bg-gray-800 text-white", Default: "text-gray-400 hover:text-white hover:bg-gray-800" -->
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                    >
-                      <span
-                        class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                        >H</span
-                      >
-                      <span class="truncate">Heroicons</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                    >
-                      <span
-                        class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                        >T</span
-                      >
-                      <span class="truncate">Tailwind Labs</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold"
-                    >
-                      <span
-                        class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-gray-700 bg-gray-800 text-[0.625rem] font-medium text-gray-400 group-hover:text-white"
-                        >W</span
-                      >
-                      <span class="truncate">Workcation</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="mt-auto">
-                <a
-                  href="#"
-                  class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-400 hover:bg-gray-800 hover:text-white"
-                >
-                  <svg
-                    class="h-6 w-6 shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z"
-                    />
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
-                  Settings
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </div>
+              </div>
+            </div>
+          </section>
 
-      <div class="lg:pl-72">
-        <div
-          class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8"
-        >
-          <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden">
-            <span class="sr-only">Open sidebar</span>
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              aria-hidden="true"
+          <!-- EMPLOYEES -->
+          <section class="px-16">
+            <div
+              class="bg-white shadow-md sm:rounded-lg mx-auto border-2 border-gray-300 rounded-lg p-6"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </button>
-
-          <!-- Separator -->
-          <div
-            class="h-6 w-px bg-gray-900/10 lg:hidden"
-            aria-hidden="true"
-          ></div>
-
-          <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-            <form class="relative flex flex-1" action="#" method="GET">
-              <label for="search-field" class="sr-only">Search</label>
-              <svg
-                class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-              <input
-                id="search-field"
-                class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
-                placeholder="Search..."
-                type="search"
-                name="search"
-              />
-            </form>
-            <div class="flex items-center gap-x-4 lg:gap-x-6">
-              <button
-                type="button"
-                class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500"
-              >
-                <span class="sr-only">View notifications</span>
-                <svg
-                  class="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"
-                  />
-                </svg>
-              </button>
-
-              <!-- Separator -->
-              <div
-                class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10"
-                aria-hidden="true"
-              ></div>
-
-              <!-- Profile dropdown -->
-              <div class="relative">
-                <button
-                  type="button"
-                  class="-m-1.5 flex items-center p-1.5"
-                  id="user-menu-button"
-                  aria-expanded="false"
-                  aria-haspopup="true"
-                >
-                  <span class="sr-only">Open user menu</span>
-                  <img
-                    class="h-8 w-8 rounded-full bg-gray-50"
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    alt=""
-                  />
-                  <span class="hidden lg:flex lg:items-center">
-                    <span
-                      class="ml-4 text-sm font-semibold leading-6 text-gray-900"
-                      aria-hidden="true"
-                      >Tom Cook</span
-                    >
-                    <svg
-                      class="ml-2 h-5 w-5 text-gray-400"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                </button>
-
-                <!--
-              Dropdown menu, show/hide based on menu state.
-
-              Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-              Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
-                <div
-                  class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none"
-                  role="menu"
-                  aria-orientation="vertical"
-                  aria-labelledby="user-menu-button"
-                  tabindex="-1"
-                >
-                  <!-- Active: "bg-gray-50", Not Active: "" -->
-                  <a
-                    href="#"
-                    class="block px-3 py-1 text-sm leading-6 text-gray-900"
-                    role="menuitem"
-                    tabindex="-1"
-                    id="user-menu-item-0"
-                    >Your profile</a
-                  >
-                  <a
-                    href="#"
-                    class="block px-3 py-1 text-sm leading-6 text-gray-900"
-                    role="menuitem"
-                    tabindex="-1"
-                    id="user-menu-item-1"
-                    >Sign out</a
-                  >
+              <!-- Start coding here -->
+              <div class="relative overflow-hidden">
+                <div class="item-title p-4">
+                  <div class="flex justify-between items-center">
+                    <h5 class="leading-none text-2xl font-bold">Employees</h5>
+                  </div>
                 </div>
+                <div
+                  class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4"
+                >
+                  <div class="w-full md:w-1/2">
+                    <form class="flex items-center">
+                      <label for="simple-search" class="sr-only">Search</label>
+                      <div class="relative w-full">
+                        <div
+                          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="w-5 h-5 text-gray-500"
+                            fill="currentColor"
+                            viewbox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <input
+                          type="text"
+                          id="simple-search"
+                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2"
+                          placeholder="Search"
+                          required=""
+                        />
+                      </div>
+                    </form>
+                  </div>
+                  <div
+                    class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
+                  >
+                    <button
+                      type="button"
+                      class="flex items-center justify-center bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none"
+                    >
+                      <svg
+                        class="h-3.5 w-3.5 mr-2"
+                        fill="currentColor"
+                        viewbox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          fill-rule="evenodd"
+                          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                        />
+                      </svg>
+                      Add product
+                    </button>
+                    <div class="flex items-center space-x-3 w-full md:w-auto">
+                      <button
+                        id="actionsDropdownButton"
+                        data-dropdown-toggle="actionsDropdown"
+                        class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200"
+                        type="button"
+                      >
+                        <svg
+                          class="-ml-1 mr-1.5 w-5 h-5"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          />
+                        </svg>
+                        Actions
+                      </button>
+                      <div
+                        id="actionsDropdown"
+                        class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                      >
+                        <ul
+                          class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                          aria-labelledby="actionsDropdownButton"
+                        >
+                          <li>
+                            <a href="#" class="block py-2 px-4">Mass Edit</a>
+                          </li>
+                        </ul>
+                        <div class="py-1">
+                          <a
+                            href="#"
+                            class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                            >Delete all</a
+                          >
+                        </div>
+                      </div>
+                      <button
+                        id="filterDropdownButton"
+                        data-dropdown-toggle="filterDropdown"
+                        class="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700"
+                        type="button"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                          class="h-4 w-4 mr-2 text-gray-400"
+                          viewbox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                        Filter
+                        <svg
+                          class="-mr-1 ml-1.5 w-5 h-5"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            fill-rule="evenodd"
+                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          />
+                        </svg>
+                      </button>
+                      <div
+                        id="filterDropdown"
+                        class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow"
+                      >
+                        <h6 class="mb-3 text-sm font-medium text-gray-900">
+                          Choose brand
+                        </h6>
+                        <ul
+                          class="space-y-2 text-sm"
+                          aria-labelledby="filterDropdownButton"
+                        >
+                          <li class="flex items-center">
+                            <input
+                              id="apple"
+                              type="checkbox"
+                              value=""
+                              class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                            />
+                            <label
+                              for="apple"
+                              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                              >Apple (56)</label
+                            >
+                          </li>
+                          <li class="flex items-center">
+                            <input
+                              id="fitbit"
+                              type="checkbox"
+                              value=""
+                              class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                            />
+                            <label
+                              for="fitbit"
+                              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                              >Microsoft (16)</label
+                            >
+                          </li>
+                          <li class="flex items-center">
+                            <input
+                              id="razor"
+                              type="checkbox"
+                              value=""
+                              class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                            />
+                            <label
+                              for="razor"
+                              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                              >Razor (49)</label
+                            >
+                          </li>
+                          <li class="flex items-center">
+                            <input
+                              id="nikon"
+                              type="checkbox"
+                              value=""
+                              class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                            />
+                            <label
+                              for="nikon"
+                              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                              >Nikon (12)</label
+                            >
+                          </li>
+                          <li class="flex items-center">
+                            <input
+                              id="benq"
+                              type="checkbox"
+                              value=""
+                              class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                            />
+                            <label
+                              for="benq"
+                              class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                              >BenQ (74)</label
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-white uppercase bg-[#1A56DB]">
+                      <tr>
+                        <th scope="col" class="px-4 py-3">Product name</th>
+                        <th scope="col" class="px-4 py-3">Category</th>
+                        <th scope="col" class="px-4 py-3">Brand</th>
+                        <th scope="col" class="px-4 py-3">Description</th>
+                        <th scope="col" class="px-4 py-3">Price</th>
+                        <th scope="col" class="px-4 py-3">
+                          <span class="sr-only">Actions</span>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 flex items-center font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          <button
+                            type="button"
+                            class="flex text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
+                            id="user-menu-button"
+                            aria-expanded="false"
+                            data-dropdown-toggle="dropdown"
+                          >
+                            <img
+                              class="w-10 h-10 rounded-full"
+                              src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                              alt="user photo"
+                            />
+                          </button>
+                          <span class="pl-2">Apple iMac 27&#34;</span>
+                        </th>
+                        <td class="px-4 py-3">PC</td>
+                        <td class="px-4 py-3">Apple</td>
+                        <td class="px-4 py-3">300</td>
+                        <td class="px-4 py-3">$2999</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="apple-imac-27-dropdown-button"
+                            data-dropdown-toggle="apple-imac-27-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="apple-imac-27-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="apple-imac-27-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          Apple iMac 20&#34;
+                        </th>
+                        <td class="px-4 py-3">PC</td>
+                        <td class="px-4 py-3">Apple</td>
+                        <td class="px-4 py-3">200</td>
+                        <td class="px-4 py-3">$1499</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="apple-imac-20-dropdown-button"
+                            data-dropdown-toggle="apple-imac-20-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="apple-imac-20-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="apple-imac-20-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          Apple iPhone 14
+                        </th>
+                        <td class="px-4 py-3">Phone</td>
+                        <td class="px-4 py-3">Apple</td>
+                        <td class="px-4 py-3">1237</td>
+                        <td class="px-4 py-3">$999</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="apple-iphone-14-dropdown-button"
+                            data-dropdown-toggle="apple-iphone-14-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="apple-iphone-14-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="apple-iphone-14-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          Apple iPad Air
+                        </th>
+                        <td class="px-4 py-3">Tablet</td>
+                        <td class="px-4 py-3">Apple</td>
+                        <td class="px-4 py-3">4578</td>
+                        <td class="px-4 py-3">$1199</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="apple-ipad-air-dropdown-button"
+                            data-dropdown-toggle="apple-ipad-air-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="apple-ipad-air-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="apple-ipad-air-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          Xbox Series S
+                        </th>
+                        <td class="px-4 py-3">Gaming/Console</td>
+                        <td class="px-4 py-3">Microsoft</td>
+                        <td class="px-4 py-3">56</td>
+                        <td class="px-4 py-3">$299</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="xbox-series-s-dropdown-button"
+                            data-dropdown-toggle="xbox-series-s-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="xbox-series-s-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="xbox-series-s-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          PlayStation 5
+                        </th>
+                        <td class="px-4 py-3">Gaming/Console</td>
+                        <td class="px-4 py-3">Sony</td>
+                        <td class="px-4 py-3">78</td>
+                        <td class="px-4 py-3">$799</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="playstation-5-dropdown-button"
+                            data-dropdown-toggle="playstation-5-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="playstation-5-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="playstation-5-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          Xbox Series X
+                        </th>
+                        <td class="px-4 py-3">Gaming/Console</td>
+                        <td class="px-4 py-3">Microsoft</td>
+                        <td class="px-4 py-3">200</td>
+                        <td class="px-4 py-3">$699</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="xbox-series-x-dropdown-button"
+                            data-dropdown-toggle="xbox-series-x-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="xbox-series-x-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="xbox-series-x-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          Apple Watch SE
+                        </th>
+                        <td class="px-4 py-3">Watch</td>
+                        <td class="px-4 py-3">Apple</td>
+                        <td class="px-4 py-3">657</td>
+                        <td class="px-4 py-3">$399</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="apple-watch-se-dropdown-button"
+                            data-dropdown-toggle="apple-watch-se-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="apple-watch-se-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="apple-watch-se-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          NIKON D850
+                        </th>
+                        <td class="px-4 py-3">Photo</td>
+                        <td class="px-4 py-3">Nikon</td>
+                        <td class="px-4 py-3">465</td>
+                        <td class="px-4 py-3">$599</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="nikon-d850-dropdown-button"
+                            data-dropdown-toggle="nikon-d850-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="nikon-d850-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="nikon-d850-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="border-b">
+                        <th
+                          scope="row"
+                          class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap"
+                        >
+                          Monitor BenQ EX2710Q
+                        </th>
+                        <td class="px-4 py-3">TV/Monitor</td>
+                        <td class="px-4 py-3">BenQ</td>
+                        <td class="px-4 py-3">354</td>
+                        <td class="px-4 py-3">$499</td>
+                        <td class="px-4 py-3 flex items-center justify-end">
+                          <button
+                            id="benq-ex2710q-dropdown-button"
+                            data-dropdown-toggle="benq-ex2710q-dropdown"
+                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:hover:text-gray-100"
+                            type="button"
+                          >
+                            <svg
+                              class="w-5 h-5"
+                              aria-hidden="true"
+                              fill="currentColor"
+                              viewbox="0 0 20 20"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"
+                              />
+                            </svg>
+                          </button>
+                          <div
+                            id="benq-ex2710q-dropdown"
+                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow"
+                          >
+                            <ul
+                              class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                              aria-labelledby="benq-ex2710q-dropdown-button"
+                            >
+                              <li>
+                                <a href="#" class="block py-2 px-4">Show</a>
+                              </li>
+                              <li>
+                                <a href="#" class="block py-2 px-4">Edit</a>
+                              </li>
+                            </ul>
+                            <div class="py-1">
+                              <a
+                                href="#"
+                                class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-200"
+                                >Delete</a
+                              >
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <nav
+                  class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
+                  aria-label="Table navigation"
+                >
+                  <span class="text-sm font-normal text-gray-500">
+                    Showing
+                    <span class="font-semibold text-gray-900">1-10</span>
+                    of
+                    <span class="font-semibold text-gray-900">1000</span>
+                  </span>
+                  <ul class="inline-flex items-stretch -space-x-px">
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:text-gray-700"
+                      >
+                        <span class="sr-only">Previous</span>
+                        <svg
+                          class="w-5 h-5"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:text-gray-700"
+                        >1</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:text-gray-700"
+                        >2</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        aria-current="page"
+                        class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700"
+                        >3</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:text-gray-700"
+                        >...</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:text-gray-700"
+                        >100</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:text-gray-700"
+                      >
+                        <span class="sr-only">Next</span>
+                        <svg
+                          class="w-5 h-5"
+                          aria-hidden="true"
+                          fill="currentColor"
+                          viewbox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"
+                          />
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
               </div>
             </div>
-          </div>
-        </div>
-
-        <main class="py-6" style="background: #d9dcdf">
-          <div class="px-4 sm:px-6 lg:px-16">
-            <!-- BREADCRUMB -->
-            <%- include('./partials/breadcrumbs'); %>
-
-            <!-- CARDS -->
-            <section>
-              <div class="container items-center pt-8 m-auto mt-5 sm:mt-10">
-                <div class="grid grid-cols-4 gap-4">
-                  <!-- STUDENTS CARD -->
-                  <div class="bg-white p-3 rounded-lg shadow">
-                    <div class="flex flex-col">
-                      <div
-                        class="flex flex-row items-center justify-between px-4 pt-4"
-                      >
-                        <div class="flex mr-4">
-                          <span
-                            class="items-center px-5 py-5 m-auto bg-light-green rounded-full"
-                          >
-                            <svg
-                              class="items-center w-8 h-8 m-auto"
-                              fill="#20c997"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink"
-                              viewBox="0 0 512.002 512.002"
-                              xml:space="preserve"
-                              stroke="#FF0060"
-                            >
-                              <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-                              <g
-                                id="SVGRepo_tracerCarrier"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-
-                              <g id="SVGRepo_iconCarrier">
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M433.311,223.607l-28.91-9.127c-20.015-6.317-31.12-27.665-24.801-47.68c3.401-10.775,11.16-18.96,20.72-23.243 c1.902-7.119,6.974-26.116,11.203-41.95c-33.264,0-35.735,0-83.862,0c-25.75,0-46.805,20.949-46.934,46.699l-0.732,145.704 c-0.055,10.953,8.78,19.877,19.733,19.932c0.034,0,0.068,0,0.102,0c10.906,0,19.776-8.814,19.83-19.733l0.732-145.704 c0.011-2.17,1.776-3.922,3.945-3.915c2.169,0.007,3.924,1.766,3.924,3.935l0.009,333.378c0,13.144,10.655,23.799,23.799,23.799 s23.799-10.655,23.799-23.799V291.672h10.276v190.232c0,13.144,10.655,23.799,23.799,23.799s23.799-10.655,23.799-23.799 C433.742,464.51,433.311,241.01,433.311,223.607z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <circle
-                                      cx="380.998"
-                                      cy="47.403"
-                                      r="41.104"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M510.052,193.842c-3.504-7.413-25.679-54.323-29.313-62.011c-6.954-14.712-20.365-25.245-35.867-28.854l-10.256,38.401 c3.849,0.478,7.32,2.655,9.425,5.911c0.702,1.086,0.008-0.26,10.741,22.445c-8.604-2.716-14.056-4.437-32.971-10.408 c-10.446-3.295-21.586,2.498-24.883,12.943c-3.237,10.256,2.372,21.546,12.943,24.883l76.281,24.079 C502.622,226.429,517.435,209.461,510.052,193.842z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M183.574,223.607l-28.911-9.127c-11.02-3.478-19.33-11.518-23.526-21.378c-4.196,9.86-12.505,17.899-23.526,21.378 l-29.087,9.182l0.009,258.242c0,13.144,10.655,23.799,23.799,23.799s23.799-10.655,23.799-23.799V291.672h10.276v190.232 c0,13.144,10.655,23.799,23.799,23.799c13.145,0,23.799-10.655,23.799-23.799C184.005,464.511,183.574,241.01,183.574,223.607z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <circle
-                                      cx="131.27"
-                                      cy="47.403"
-                                      r="41.104"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M100.488,101.606c4.139,15.495,6.707,25.108,11.204,41.951c8.512,3.813,15.594,10.724,19.444,19.8 c3.85-9.078,10.932-15.988,19.444-19.801c1.893-7.088,6.97-26.097,11.203-41.95C158.679,101.606,130.027,101.606,100.488,101.606z "
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M260.314,193.841c-3.504-7.412-25.679-54.321-29.313-62.01c-6.954-14.712-20.365-25.245-35.867-28.854l-10.256,38.401 c4.476,0.555,8.368,3.398,10.261,7.404l9.903,20.95c-8.604-2.716-14.056-4.437-32.971-10.408 c-10.445-3.295-21.586,2.498-24.883,12.943c-3.238,10.256,2.372,21.546,12.943,24.883l76.281,24.079 C252.884,226.428,267.698,209.458,260.314,193.841z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M115.084,172.269c-3.297-10.445-14.436-16.24-24.883-12.942L57.23,169.735l9.903-20.95 c1.898-4.016,5.794-6.85,10.261-7.404l-10.256-38.401c-15.502,3.608-28.912,14.142-35.867,28.854 c-3.684,7.794-26.284,55.602-29.313,62.011c-7.45,15.76,7.624,32.525,23.901,27.389l76.281-24.079 C112.787,193.791,118.306,182.474,115.084,172.269z"
-                                    />
-                                  </g>
-                                </g>
-                              </g>
-                            </svg>
-                          </span>
-                        </div>
-                        <div class="flex-1 pl-1">
-                          <div class="text-sm text-gray-400 sm:text-base">
-                            Students
-                          </div>
-                          <div class="text-xl font-medium text-black">
-                            150000
-                          </div>
-                        </div>
-                      </div>
-                      <div class="px-4 pt-px pb-2">
-                        <div
-                          class="flex flex-row items-center justify-end w-full py-px text-base text-gray-400"
-                        >
-                          <div
-                            class="flex items-center justify-between space-x-2"
-                          >
-                            <span
-                              class="flex items-center text-[#2C7865] gap-1 text-sm font-medium text-meta-3"
-                            >
-                              0.43%
-                              <svg
-                                class="fill-meta-3"
-                                width="10"
-                                height="11"
-                                viewBox="0 0 10 11"
-                                fill="#2C7865"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
-                                  fill=""
-                                ></path>
-                              </svg>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- TEACHERS CARD -->
-                  <div class="bg-white p-3 rounded-lg shadow">
-                    <div class="flex flex-col">
-                      <div
-                        class="flex flex-row items-center justify-between px-4 pt-4"
-                      >
-                        <div class="flex mr-4">
-                          <span
-                            class="items-center px-5 py-5 m-auto bg-blue-200 rounded-full"
-                          >
-                            <svg
-                              class="items-center w-8 h-8 m-auto"
-                              fill="#2563eb"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink"
-                              viewBox="0 0 512.002 512.002"
-                              xml:space="preserve"
-                              stroke="#2563eb"
-                            >
-                              <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-                              <g
-                                id="SVGRepo_tracerCarrier"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-
-                              <g id="SVGRepo_iconCarrier">
-                                <g>
-                                  <g>
-                                    <circle
-                                      cx="392.353"
-                                      cy="42.318"
-                                      r="42.124"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M499.406,338.088c0-4.626-3.75-8.376-8.376-8.376h-3.545v-18.347c1.476-1.116,2.794-2.423,3.918-3.893 c2.634-3.446,4.206-7.746,4.183-12.421l-0.751-149.322c-0.131-26.391-21.709-47.859-48.098-47.859h-20.833 c-2.662,6.956-22.34,58.364-25.196,65.825l5.941-27.984c0.417-1.966,0.115-4.015-0.853-5.775l-8.158-14.837l7.252-13.19 c1.08-1.964-0.343-4.375-2.588-4.375h-19.905c-2.24,0-3.669,2.408-2.588,4.375l7.252,13.19l-8.188,14.893 c-0.95,1.727-1.259,3.733-0.875,5.667l5.194,28.037c-2.635-6.759-22.113-58.59-24.936-65.825h-20.637 c-26.39,0-47.966,21.469-48.099,47.859l-0.75,149.323c-0.057,11.226,8.998,20.371,20.223,20.427c0.034,0,0.07,0,0.105,0 c11.178,0,20.267-9.033,20.324-20.223l0.75-149.323c0-0.018,0-0.036,0-0.053c0.027-2.158,1.79-3.89,3.948-3.877 c2.158,0.013,3.9,1.767,3.9,3.926l0.01,341.681c0,13.47,10.92,24.391,24.391,24.391s24.391-10.92,24.391-24.391V292.654h10.531 v194.955c0,13.47,10.92,24.391,24.391,24.391s24.391-10.92,24.391-24.391v-41.545c-9.727-5.136-16.375-15.352-16.375-27.095 v-80.881c0-11.744,6.648-21.959,16.375-27.096c0-17.223-0.332-133.71-0.421-164.837c-0.007-2.306,1.828-4.195,4.133-4.255 c2.305-0.06,4.238,1.729,4.352,4.031c0,0.001,0,0.001,0,0.002l0.751,149.323c0.023,4.611,1.598,8.841,4.201,12.237 c1.315,1.715,2.883,3.224,4.67,4.445v17.773h-3.436c-4.626,0-8.376,3.75-8.376,8.376v80.881c0,4.626,3.75,8.376,8.376,8.376 h30.661c4.626,0,8.376-3.75,8.376-8.376v-80.881H499.406z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <circle
-                                      cx="147.601"
-                                      cy="42.141"
-                                      r="42.141"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M228.266,326.652l-14.438-74.548l-33.6,21.448c-8.458,5.399-18.895,7.18-29.115,4.347l-28.103,8.151 c-1.903,0.552-3.868,0.832-5.839,0.832c-9.257,0-17.523-6.213-20.104-15.109l-11.701-40.339l-15.815,81.65 c7.688,5.569,12.702,14.612,12.702,24.81v2.214c3.401,0,7.183,0,11.275,0v147.493c0,13.475,10.924,24.4,24.4,24.4 c13.475,0,24.4-10.923,24.4-24.4V340.108c3.508,0,7.027,0,10.535,0v147.493c0,13.475,10.924,24.4,24.4,24.4s24.4-10.923,24.4-24.4 V340.108c5.883,0,11.137,0,15.516,0C224.267,340.108,229.619,333.638,228.266,326.652z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M89.881,171.841c15.619-4.53,31.144-9.033,47.057-13.649c-1.828-4.688-4.328-11.098-23.582-60.478h-0.987 c-21.762,0-37.58,13.919-47.014,41.37c-14.619,42.544-47.82,133.38-48.153,134.292c-3.199,8.75,0.002,18.261,7.203,23.455 c0,17.067,0,14.407,0,32.686h-3.436c-4.626,0-8.376,3.75-8.376,8.377v80.881c0,4.626,3.75,8.376,8.376,8.376h30.659 c4.626,0,8.376-3.75,8.376-8.376v-80.881c0-4.627-3.75-8.377-8.376-8.377h-3.545c0-11.744,0-20.903,0-32.6 c3.238-2.301,5.844-5.565,7.311-9.577c0.204-0.557,12.634-34.566,25.658-70.777l-5.448-18.781 C72.388,186.695,78.793,175.057,89.881,171.841z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M161.315,130.855l-8.158-14.837l7.252-13.19c1.08-1.964-0.343-4.375-2.588-4.375h-19.905c-2.24,0-3.669,2.409-2.588,4.375 l7.252,13.19l-8.188,14.893c-0.95,1.727-1.259,3.733-0.876,5.667l4.244,21.375c6.251-1.813,8.135-2.556,11.783-2.556 c2.904,0,5.709,0.613,8.273,1.727l4.35-20.492C162.587,134.666,162.283,132.616,161.315,130.855z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M153.622,175.154c-0.633-2.184-2.949-3.573-5.268-2.898l-53.824,15.611c-2.252,0.653-3.552,3.017-2.899,5.267 l21.462,73.991c0.635,2.19,3.023,3.551,5.268,2.898l14.357-4.164c-0.855-1.056-1.67-2.158-2.417-3.331 c-10.744-16.83-5.809-39.185,11.021-49.928l19.544-12.475L153.622,175.154z"
-                                    />
-                                  </g>
-                                </g>
-                                <g>
-                                  <g>
-                                    <path
-                                      d="M248.639,192.318c-4.153-11.54-7.283-20.289-10.049-28.103c-3.074-8.688-5.694-16.219-8.756-25.129 c-9.434-27.452-25.252-41.37-47.014-41.37h-0.985c-4.458,11.646-18.727,48.924-22.939,59.927 c5.095,2.566,9.097,7.159,10.751,12.865l5.877,20.261l23.896-15.253l0.026-0.017c1.652,4.682,3.416,9.643,5.44,15.299 l-55.051,35.142c-9.466,6.043-12.24,18.614-6.199,28.078c6.042,9.466,18.614,12.243,28.08,6.199l68.732-43.873 C248.455,211.231,251.856,201.256,248.639,192.318z"
-                                    />
-                                  </g>
-                                </g>
-                              </g>
-                            </svg>
-                          </span>
-                        </div>
-                        <div class="flex-1 pl-1">
-                          <div class="text-sm text-gray-400 sm:text-base">
-                            Teachers
-                          </div>
-                          <div class="text-xl font-medium text-black">2250</div>
-                        </div>
-                      </div>
-                      <div class="px-4 pt-px pb-2">
-                        <div
-                          class="flex flex-row items-center justify-end w-full py-px text-base text-gray-400"
-                        >
-                          <div
-                            class="flex items-center justify-between space-x-2"
-                          >
-                            <span
-                              class="flex items-center text-[#2C7865] gap-1 text-sm font-medium text-meta-3"
-                            >
-                              0.43%
-                              <svg
-                                class="fill-meta-3"
-                                width="10"
-                                height="11"
-                                viewBox="0 0 10 11"
-                                fill="#2C7865"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
-                                  fill=""
-                                ></path>
-                              </svg>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- PARENTS CARD -->
-                  <div class="bg-white p-3 rounded-lg shadow">
-                    <div class="flex flex-col">
-                      <div
-                        class="flex flex-row items-center justify-between px-4 pt-4"
-                      >
-                        <div class="flex mr-4">
-                          <span
-                            class="items-center px-5 py-5 m-auto bg-light-yellow rounded-full"
-                          >
-                            <svg
-                              class="items-center w-8 h-8 m-auto"
-                              fill="#fd7e14"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink"
-                              viewBox="0 0 512.002 512.002"
-                              xml:space="preserve"
-                              stroke="#fd7e14"
-                            >
-                              <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-                              <g
-                                id="SVGRepo_tracerCarrier"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-
-                              <g id="SVGRepo_iconCarrier">
-                                <style type="text/css">
-                                  .st0 {
-                                    fill: #fd7e14;
-                                  }
-                                </style>
-                                <g>
-                                  <path
-                                    class="st0"
-                                    d="M78.642,118.933c22.879,0,41.415-18.551,41.415-41.414c0-22.888-18.536-41.423-41.415-41.423 c-22.887,0-41.422,18.535-41.422,41.423C37.219,100.383,55.755,118.933,78.642,118.933z"
-                                  />
-                                  <path
-                                    class="st0"
-                                    d="M255.706,228.731v0.062c0.101,0,0.193-0.031,0.294-0.031c0.101,0,0.194,0.031,0.294,0.031v-0.062 c15.563-0.317,28.082-12.976,28.082-28.601c0-15.648-12.52-28.299-28.082-28.617v-0.062c-0.1,0-0.193,0.031-0.294,0.031 c-0.101,0-0.193-0.031-0.294-0.031v0.062c-15.563,0.318-28.082,12.969-28.082,28.617 C227.624,215.754,240.143,228.413,255.706,228.731z"
-                                  />
-                                  <path
-                                    class="st0"
-                                    d="M433.358,118.933c22.887,0,41.423-18.551,41.423-41.414c0-22.888-18.536-41.423-41.423-41.423 c-22.879,0-41.414,18.535-41.414,41.423C391.944,100.383,410.48,118.933,433.358,118.933z"
-                                  />
-                                  <path
-                                    class="st0"
-                                    d="M512,319.675V180.463c0-20.076-21.834-41.91-41.903-41.91h-5.799l-28.818,28.818l-28.214-28.214 c-17.839,2.609-33.564,13.665-41.918,30.018l-33.494,97.967c-1.154,2.245-3.298,3.84-5.792,4.281 c-2.493,0.442-5.048-0.31-6.914-2.036l-20.835-18.04c-6.232-5.769-14.409-8.974-22.902-8.974H256h-19.41 c-8.494,0-16.67,3.206-22.903,8.974l-20.835,18.04c-1.866,1.726-4.422,2.478-6.914,2.036c-2.494-0.442-4.638-2.036-5.792-4.281 l-33.494-97.967c-9.6-18.791-28.926-30.622-50.032-30.622H78.216H41.903C21.834,138.553,0,160.387,0,180.463v139.211 c0,10.035,8.13,18.172,18.165,18.172c4.939,0,0,0,12.682,0l6.906,118.724c0,10.677,8.664,19.333,19.341,19.333 c4.506,0,12.814,0,21.122,0c8.307,0,16.615,0,21.121,0c10.677,0,19.341-8.656,19.341-19.333l6.906-118.724l-0.086-84.765 c0-1.339,0.914-2.493,2.222-2.818c1.309-0.31,2.648,0.309,3.26,1.502l26.573,65.401c3.205,6.256,9.152,10.654,16.074,11.886 c6.921,1.23,14.021-0.844,19.186-5.614l25.426-18.729c0.852-0.782,2.083-0.983,3.136-0.542c1.061,0.472,1.742,1.518,1.742,2.663 l0.094,73.508l4.777,82.187c0,7.387,6,13.379,13.395,13.379c3.112,0,8.865,0,14.618,0c5.753,0,11.506,0,14.618,0 c7.394,0,13.394-5.992,13.394-13.379l4.777-82.187l0.093-73.508c0-1.146,0.681-2.192,1.742-2.663 c1.053-0.442,2.284-0.24,3.136,0.542l25.426,18.729c5.164,4.77,12.264,6.844,19.187,5.614c6.921-1.231,12.868-5.629,16.073-11.886 l26.572-65.401c0.612-1.192,1.951-1.812,3.26-1.502c1.308,0.325,2.222,1.479,2.222,2.818l-0.031,32.332l-27.881,86.648 c-0.659,2.051-0.302,4.296,0.967,6.039c1.27,1.742,3.298,2.772,5.451,2.772h23.91l4.405,75.699 c0,10.677,8.664,19.333,19.341,19.333c4.506,0,12.814,0,21.121,0c8.308,0,16.615,0,21.122,0c10.677,0,19.34-8.656,19.34-19.333 l4.406-75.699h26.418c2.152,0,4.181-1.03,5.451-2.772c1.27-1.743,1.626-3.988,0.968-6.039L500.1,336.67 C507.037,334.107,512,327.495,512,319.675z M85.424,159.087v74.592H63.389v-74.592H85.424z"
-                                  />
-                                </g>
-                              </g>
-                            </svg>
-                          </span>
-                        </div>
-                        <div class="flex-1 pl-1">
-                          <div class="text-sm text-gray-400 sm:text-base">
-                            Parents
-                          </div>
-                          <div class="text-xl font-medium text-black">5690</div>
-                        </div>
-                      </div>
-                      <div class="px-4 pt-px pb-2">
-                        <div
-                          class="flex flex-row items-center justify-end w-full py-px text-base text-gray-400"
-                        >
-                          <div
-                            class="flex items-center justify-between space-x-2"
-                          >
-                            <span
-                              class="flex items-center text-[#2C7865] gap-1 text-sm font-medium text-meta-3"
-                            >
-                              0.43%
-                              <svg
-                                class="fill-meta-3"
-                                width="10"
-                                height="11"
-                                viewBox="0 0 10 11"
-                                fill="#2C7865"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M4.35716 2.47737L0.908974 5.82987L5.0443e-07 4.94612L5 0.0848689L10 4.94612L9.09103 5.82987L5.64284 2.47737L5.64284 10.0849L4.35716 10.0849L4.35716 2.47737Z"
-                                  fill=""
-                                ></path>
-                              </svg>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- EARNINGS CARD -->
-                  <div class="bg-white p-3 rounded-lg shadow">
-                    <div class="flex flex-col">
-                      <div
-                        class="flex flex-row items-center justify-between px-4 pt-4"
-                      >
-                        <div class="flex mr-4">
-                          <span
-                            class="items-center px-5 py-5 m-auto bg-light-red rounded-full"
-                          >
-                            <svg
-                              class="tems-center w-8 h-8 m-auto"
-                              xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
-                              xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink"
-                              viewBox="0 0 64 38"
-                              xml:space="preserve"
-                              fill="#FF0060"
-                            >
-                              <g id="SVGRepo_bgCarrier" stroke-width="0" />
-
-                              <g
-                                id="SVGRepo_tracerCarrier"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-
-                              <g id="SVGRepo_iconCarrier">
-                                <g id="Page-1" sketch:type="MSPage">
-                                  <g
-                                    id="Cash-dollar"
-                                    transform="translate(1.000000, 1.000000)"
-                                    sketch:type="MSLayerGroup"
-                                  >
-                                    <path
-                                      id="Shape"
-                                      sketch:type="MSShapeGroup"
-                                      fill="none"
-                                      stroke="#ea0606"
-                                      stroke-width="2"
-                                      d="M60,36c1.1,0,2-0.9,2-2V2 c0-1.1-0.9-2-2-2H2C0.9,0,0,0.9,0,2v32c0,1.1,0.9,2,2,2H60L60,36z"
-                                    />
-                                    <path
-                                      id="Shape_1_"
-                                      sketch:type="MSShapeGroup"
-                                      fill="none"
-                                      stroke="#ea0606"
-                                      stroke-width="2"
-                                      d="M5,4h20.9"
-                                    />
-                                    <path
-                                      id="Shape_2_"
-                                      sketch:type="MSShapeGroup"
-                                      fill="none"
-                                      stroke="#ea0606"
-                                      stroke-width="2"
-                                      d="M5,32h20.9"
-                                    />
-                                    <path
-                                      id="Shape_3_"
-                                      sketch:type="MSShapeGroup"
-                                      fill="none"
-                                      stroke="#ea0606"
-                                      stroke-width="2"
-                                      d="M36.2,4H57"
-                                    />
-                                    <path
-                                      id="Shape_4_"
-                                      sketch:type="MSShapeGroup"
-                                      fill="none"
-                                      stroke="#ea0606"
-                                      stroke-width="2"
-                                      d="M36.2,32H57"
-                                    />
-                                    <circle
-                                      id="Oval"
-                                      sketch:type="MSShapeGroup"
-                                      fill="none"
-                                      stroke="#ea0606"
-                                      stroke-width="2"
-                                      cx="31"
-                                      cy="18"
-                                      r="15"
-                                    ></circle>
-                                    <path
-                                      id="Shape_5_"
-                                      sketch:type="MSShapeGroup"
-                                      fill="none"
-                                      stroke="#ea0606"
-                                      stroke-width="2"
-                                      d="M27.1,22.4c0,2,1.8,3.6,4,3.6 s4-1.6,4-3.6c0-2.9-4-4.4-4-4.4s-4-1.5-4-4.4c0-2,1.8-3.6,4-3.6s4,1.6,4,3.6"
-                                    />
-                                    <path
-                                      id="Shape_6_"
-                                      sketch:type="MSShapeGroup"
-                                      fill="none"
-                                      stroke="#ea0606"
-                                      stroke-width="2"
-                                      d="M31.1,6.1V30"
-                                    />
-                                  </g>
-                                </g>
-                              </g>
-                            </svg>
-                          </span>
-                        </div>
-                        <div class="flex-1 pl-1">
-                          <div class="text-sm text-gray-400 sm:text-base">
-                            Earnings
-                          </div>
-                          <div class="text-xl font-medium text-black">
-                            $193000
-                          </div>
-                        </div>
-                      </div>
-                      <div class="px-4 pt-px pb-2">
-                        <div
-                          class="flex flex-row items-center justify-end w-full py-px text-base text-gray-400"
-                        >
-                          <div
-                            class="flex items-center justify-between space-x-2"
-                          >
-                            <span
-                              class="flex items-center text-[#ea0606] gap-1 text-sm font-medium text-meta-3"
-                            >
-                              0.95%
-                              <svg
-                                class="fill-meta-5"
-                                width="10"
-                                height="11"
-                                viewBox="0 0 10 11"
-                                fill="#ea0606"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M5.64284 7.69237L9.09102 4.33987L10 5.22362L5 10.0849L-8.98488e-07 5.22362L0.908973 4.33987L4.35716 7.69237L4.35716 0.0848701L5.64284 0.0848704L5.64284 7.69237Z"
-                                  fill=""
-                                ></path>
-                              </svg>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- CHARTS -->
-            <section>
-              <div class="container items-center mt-4 m-auto">
-                <div class="grid grid-cols-4 gap-4">
-                  <!-- LINE CHARTS 01 -->
-                  <%- include('./charts/line-chart'); %>
-
-                  <!-- BAR CHART -->
-                  <%- include('./charts/bar-chart'); %>
-
-                  <!-- DONUT CHART -->
-                  <%- include('./charts/donut-chart'); %>
-                </div>
-              </div>
-            </section>
-
-            <!-- NOTICED -->
-            <section>
-              <div class="container items-center mt-4 m-auto">
-                <div class="grid grid-cols-5 gap-4">
-                  <div class="col-span-2">
-                    <div class="bg-white p-3 rounded-lg shadow">
-                      <div class="col-12 xl:col-6 xxxl:col-4">
-                        <div class="card dashboard-card-four p-5">
-                          <div class="card-body">
-                            <div class="flex justify-between items-center">
-                              <div class="item-title">
-                                <h5
-                                  class="leading-none text-2xl font-bold text-gray-900"
-                                >
-                                  Event Calender
-                                </h5>
-                              </div>
-                            </div>
-                            <div class="calender-wrap">
-                              <div id="fc-calender" class="px-14">
-                                <div
-                                  class="flex justify-between font-bold items-center py-8"
-                                >
-                                  <h2>April 2024</h2>
-                                  <div class="">
-                                    <button
-                                      type="button"
-                                      class=""
-                                      aria-label="prev"
-                                    >
-                                      <span
-                                        class="inline-flex rounded-lg p-3 bg-blue-50 ring-4 ring-white hover:bg-[#1A56DB] hover:text-white"
-                                      >
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          class="h-4 w-4"
-                                          viewBox="0 0 512 512"
-                                        >
-                                          <path
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="48"
-                                            d="M328 112L184 256l144 144"
-                                          />
-                                        </svg>
-                                      </span>
-                                    </button>
-                                    <button
-                                      type="button"
-                                      class=""
-                                      aria-label="next"
-                                    >
-                                      <span
-                                        class="inline-flex rounded-lg p-3 bg-blue-50 ring-4 ring-white hover:bg-[#1A56DB] hover:text-white"
-                                      >
-                                        <svg
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          class="h-4 w-4"
-                                          viewBox="0 0 512 512"
-                                        >
-                                          <path
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="48"
-                                            d="M184 112l144 144-144 144"
-                                          />
-                                        </svg>
-                                      </span>
-                                    </button>
-                                  </div>
-                                </div>
-                                <div class="fc-toolbar fc-header-toolbar">
-                                  <div
-                                    class="flex justify-center bg-gray-300 rounded-full"
-                                  >
-                                    <div
-                                      class="flex justify-between w-full p-2"
-                                    >
-                                      <button
-                                        type="button"
-                                        class="flex-1 fc-basicDay-button fc-button fc-state-default fc-corner-left rounded-full py-3 px-4"
-                                      >
-                                        Day
-                                      </button>
-                                      <button
-                                        type="button"
-                                        class="flex-1 fc-basicWeek-button fc-button fc-state-default rounded-full py-3 px-4"
-                                      >
-                                        Week
-                                      </button>
-                                      <button
-                                        type="button"
-                                        class="flex-1 fc-month-button shadow-2xl bg-[#1A56DB] text-white fc-button fc-state-default fc-corner-right fc-state-active rounded-full py-3 px-4"
-                                      >
-                                        Month
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="fc-view-container">
-                                  <div
-                                    class="fc-view fc-month-view fc-basic-view"
-                                  >
-                                    <!-- Calendar content here -->
-                                    <div class="pt-4">
-                                      <div
-                                        class="fc-view fc-month-view fc-basic-view"
-                                      >
-                                        <table class="w-full">
-                                          <thead
-                                            class="text-center border-b border-gray-300"
-                                          >
-                                            <tr>
-                                              <th class="p-2">Sun</th>
-                                              <th class="p-2">Mon</th>
-                                              <th class="p-2">Tue</th>
-                                              <th class="p-2">Wed</th>
-                                              <th class="p-2">Thu</th>
-                                              <th class="p-2">Fri</th>
-                                              <th class="p-2">Sat</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody class="text-center">
-                                            <tr>
-                                              <td class="p-2 text-gray-400">
-                                                31
-                                              </td>
-                                              <td class="p-2">1</td>
-                                              <td
-                                                class="p-2 bg-[#1A56DB] text-white"
-                                              >
-                                                2
-                                              </td>
-                                              <td class="p-2">3</td>
-                                              <td class="p-2">4</td>
-                                              <td class="p-2">5</td>
-                                              <td class="p-2">6</td>
-                                            </tr>
-                                            <tr>
-                                              <td class="p-2">7</td>
-                                              <td class="p-2">8</td>
-                                              <td class="p-2">9</td>
-                                              <td class="p-2">10</td>
-                                              <td class="p-2">11</td>
-                                              <td class="p-2">12</td>
-                                              <td class="p-2">13</td>
-                                            </tr>
-                                            <tr>
-                                              <td class="p-2">14</td>
-                                              <td class="p-2">15</td>
-                                              <td class="p-2">16</td>
-                                              <td class="p-2">17</td>
-                                              <td class="p-2">18</td>
-                                              <td class="p-2">19</td>
-                                              <td class="p-2">20</td>
-                                            </tr>
-                                            <tr>
-                                              <td class="p-2">21</td>
-                                              <td class="p-2">22</td>
-                                              <td class="p-2">23</td>
-                                              <td class="p-2">24</td>
-                                              <td class="p-2">25</td>
-                                              <td class="p-2">26</td>
-                                              <td class="p-2">27</td>
-                                            </tr>
-                                            <tr>
-                                              <td class="p-2">28</td>
-                                              <td class="p-2">29</td>
-                                              <td class="p-2">30</td>
-                                              <td class="p-2 text-gray-400">
-                                                1
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                2
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                3
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                4
-                                              </td>
-                                            </tr>
-
-                                            <tr>
-                                              <td class="p-2 text-gray-400">
-                                                5
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                6
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                7
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                8
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                9
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                10
-                                              </td>
-                                              <td class="p-2 text-gray-400">
-                                                11
-                                              </td>
-                                            </tr>
-                                            <!-- Add more rows for the remaining days -->
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- NOTICED BOARD -->
-                  <div class="col-span-3 bg-white p-3 rounded-lg">
-                    <div class="bg-white rounded-lg p-4 md:p-6">
-                      <h5
-                        class="leading-none text-2xl font-bold text-gray-900 pb-4"
-                      >
-                        Noticed Board
-                      </h5>
-
-                      <div
-                        class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0"
-                      >
-                        <div
-                          class="rounded-tl-lg rounded-tr-lg sm:rounded-tr-none group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
-                        >
-                          <div>
-                            <span
-                              class="inline-flex rounded-lg p-3 bg-teal-50 text-teal-700 ring-4 ring-white"
-                            >
-                              <svg
-                                class="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                                />
-                              </svg>
-                            </span>
-                          </div>
-                          <div class="mt-8">
-                            <h3
-                              class="text-base font-semibold leading-6 text-gray-900"
-                            >
-                              <a href="#" class="focus:outline-none">
-                                <!-- Extend touch target to entire panel -->
-                                <span
-                                  class="absolute inset-0"
-                                  aria-hidden="true"
-                                ></span>
-                                Request time off
-                              </a>
-                            </h3>
-                            <p class="mt-2 text-sm text-gray-500">
-                              Doloribus dolores nostrum quia qui natus officia
-                              quod et dolorem. Sit repellendus qui ut at
-                              blanditiis et quo et molestiae.
-                            </p>
-                          </div>
-                          <span
-                            class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
-                            aria-hidden="true"
-                          >
-                            <svg
-                              class="h-6 w-6"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"
-                              />
-                            </svg>
-                          </span>
-                        </div>
-                        <div
-                          class="sm:rounded-tr-lg group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
-                        >
-                          <div>
-                            <span
-                              class="inline-flex rounded-lg p-3 bg-purple-50 text-purple-700 ring-4 ring-white"
-                            >
-                              <svg
-                                class="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"
-                                />
-                              </svg>
-                            </span>
-                          </div>
-                          <div class="mt-8">
-                            <h3
-                              class="text-base font-semibold leading-6 text-gray-900"
-                            >
-                              <a href="#" class="focus:outline-none">
-                                <!-- Extend touch target to entire panel -->
-                                <span
-                                  class="absolute inset-0"
-                                  aria-hidden="true"
-                                ></span>
-                                Benefits
-                              </a>
-                            </h3>
-                            <p class="mt-2 text-sm text-gray-500">
-                              Doloribus dolores nostrum quia qui natus officia
-                              quod et dolorem. Sit repellendus qui ut at
-                              blanditiis et quo et molestiae.
-                            </p>
-                          </div>
-                          <span
-                            class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
-                            aria-hidden="true"
-                          >
-                            <svg
-                              class="h-6 w-6"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"
-                              />
-                            </svg>
-                          </span>
-                        </div>
-                        <div
-                          class="group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
-                        >
-                          <div>
-                            <span
-                              class="inline-flex rounded-lg p-3 bg-sky-50 text-sky-700 ring-4 ring-white"
-                            >
-                              <svg
-                                class="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
-                                />
-                              </svg>
-                            </span>
-                          </div>
-                          <div class="mt-8">
-                            <h3
-                              class="text-base font-semibold leading-6 text-gray-900"
-                            >
-                              <a href="#" class="focus:outline-none">
-                                <!-- Extend touch target to entire panel -->
-                                <span
-                                  class="absolute inset-0"
-                                  aria-hidden="true"
-                                ></span>
-                                Schedule a one-on-one
-                              </a>
-                            </h3>
-                            <p class="mt-2 text-sm text-gray-500">
-                              Doloribus dolores nostrum quia qui natus officia
-                              quod et dolorem. Sit repellendus qui ut at
-                              blanditiis et quo et molestiae.
-                            </p>
-                          </div>
-                          <span
-                            class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
-                            aria-hidden="true"
-                          >
-                            <svg
-                              class="h-6 w-6"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"
-                              />
-                            </svg>
-                          </span>
-                        </div>
-                        <div
-                          class="group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
-                        >
-                          <div>
-                            <span
-                              class="inline-flex rounded-lg p-3 bg-yellow-50 text-yellow-700 ring-4 ring-white"
-                            >
-                              <svg
-                                class="h-6 w-6"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                  d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z"
-                                />
-                              </svg>
-                            </span>
-                          </div>
-                          <div class="mt-8">
-                            <h3
-                              class="text-base font-semibold leading-6 text-gray-900"
-                            >
-                              <a href="#" class="focus:outline-none">
-                                <!-- Extend touch target to entire panel -->
-                                <span
-                                  class="absolute inset-0"
-                                  aria-hidden="true"
-                                ></span>
-                                Payroll
-                              </a>
-                            </h3>
-                            <p class="mt-2 text-sm text-gray-500">
-                              Doloribus dolores nostrum quia qui natus officia
-                              quod et dolorem. Sit repellendus qui ut at
-                              blanditiis et quo et molestiae.
-                            </p>
-                          </div>
-                          <span
-                            class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
-                            aria-hidden="true"
-                          >
-                            <svg
-                              class="h-6 w-6"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z"
-                              />
-                            </svg>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
+          </section>
         </main>
       </div>
     </div>
+
+    <script>
+      var themeToggleDarkIcon = document.getElementById(
+        "theme-toggle-dark-icon"
+      );
+      var themeToggleLightIcon = document.getElementById(
+        "theme-toggle-light-icon"
+      );
+
+      // Change the icons inside the button based on previous settings
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        themeToggleLightIcon.classList.remove("hidden");
+      } else {
+        themeToggleDarkIcon.classList.remove("hidden");
+      }
+
+      var themeToggleBtn = document.getElementById("theme-toggle");
+
+      themeToggleBtn.addEventListener("click", function () {
+        // toggle icons inside button
+        themeToggleDarkIcon.classList.toggle("hidden");
+        themeToggleLightIcon.classList.toggle("hidden");
+
+        // if set via local storage previously
+        if (localStorage.getItem("color-theme")) {
+          if (localStorage.getItem("color-theme") === "light") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          }
+
+          // if NOT set via local storage previously
+        } else {
+          if (document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          }
+        }
+      });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!-- EARNING SCRIPT -->
@@ -1664,119 +1925,7 @@
     <script src="../js/charts/line-chart.js"></script>
 
     <!-- EXPENSE SCRIPT -->
-    <script>
-      // Assuming you have data for each month's expenses
-      const monthlyExpenses = [
-        { month: "Jan", expenses: [10000, 5000] },
-        { month: "Feb", expenses: [7000, 3000] },
-        { month: "Mar", expenses: [6000, 5000] },
-        // Add expenses for other months similarly
-      ];
-
-      // Calculate the total expenses for each month
-      const totalExpenses = monthlyExpenses.map((monthData) => {
-        const total = monthData.expenses.reduce(
-          (acc, expense) => acc + expense,
-          0
-        );
-        return { month: monthData.month, total: total };
-      });
-
-      options = {
-        colors: ["#1A56DB", "#FF0060", "#00DFA2"],
-        series: [
-          {
-            name: "Total Expenses",
-            data: totalExpenses.map((item) => item.total),
-          },
-        ],
-        chart: {
-          type: "bar",
-          height: "320px",
-          fontFamily: "Inter, sans-serif",
-          toolbar: {
-            show: false,
-          },
-        },
-        plotOptions: {
-          bar: {
-            distributed: true,
-            horizontal: false,
-            columnWidth: "70%",
-            borderRadiusApplication: "end",
-            borderRadius: 8,
-          },
-        },
-        tooltip: {
-          shared: true,
-          intersect: false,
-          style: {
-            fontFamily: "Inter, sans-serif",
-          },
-        },
-        states: {
-          hover: {
-            filter: {
-              type: "darken",
-              value: 1,
-            },
-          },
-        },
-        stroke: {
-          show: true,
-          width: 0,
-          colors: ["transparent"],
-        },
-        grid: {
-          show: false,
-          strokeDashArray: 4,
-          padding: {
-            left: 2,
-            right: 2,
-            top: -14,
-          },
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        legend: {
-          show: false,
-        },
-        xaxis: {
-          categories: totalExpenses.map((item) => item.month), // Set x-axis categories as months
-          labels: {
-            show: true,
-            style: {
-              fontFamily: "Inter, sans-serif",
-              cssClass: "text-xs font-normal fill-gray-500 dark:fill-gray-400",
-            },
-          },
-          axisBorder: {
-            show: false,
-          },
-          axisTicks: {
-            show: false,
-          },
-        },
-        yaxis: {
-          show: false,
-        },
-        fill: {
-          opacity: 1,
-        },
-      };
-
-      if (
-        document.getElementById("column-chart") &&
-        typeof ApexCharts !== "undefined"
-      ) {
-        const chart = new ApexCharts(
-          document.getElementById("column-chart"),
-          options
-        );
-        chart.render();
-      }
-    </script>
+    <script src="../js/charts/bar-chart.js"></script>
 
     <!-- STUDENT SCRIPT -->
     <script>
@@ -1883,7 +2032,36 @@
         chart.render();
       }
     </script>
+
+    <!-- <script type="module">
+
+      import Datepicker from 'flowbite-datepicker/Datepicker';
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const datepicker = new Datepicker(
+          document.getElementById("myDatepicker")
+        );
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        // Function to go to previous month
+        prevBtn.addEventListener("click", function () {
+          datepicker.changeMonth(-1);
+        });
+
+        // Function to go to next month
+        nextBtn.addEventListener("click", function () {
+          datepicker.changeMonth(1);
+        });
+      });
+    </script> -->
+
+    <script type="module" src="../js/datepicker.js"></script>
+    <a
+      id="scrollUp"
+      href="#top"
+      style="position: fixed; z-index: 2147483647; background-color: red"
+      ><i class="fa fa-angle-up"></i
+    ></a>
   </body>
 </html>
-
-<!-- roman 5:8 -->

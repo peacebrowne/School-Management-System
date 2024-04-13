@@ -2,7 +2,7 @@ import Interactions from "../repositories/repositories.js";
 import { v4 as uuidv4 } from "uuid";
 import { genSalt, hash } from "bcrypt";
 import pkg from "validator";
-import { Create } from "../../controller/handler.js";
+import { Create } from "../controller/handler.js";
 const { isEmail, isEmpty, isStrongPassword } = pkg;
 
 export default class Validations {
@@ -10,7 +10,6 @@ export default class Validations {
     const { email, password } = JSON.parse(data);
 
     const result = await new Interactions("person", "read").readData(email);
-    console.log(result);
 
     if (!result) return;
 
@@ -78,18 +77,3 @@ export default class Validations {
     );
   };
 }
-
-let v = new Validations();
-v.signUp(`{
-    "first_name": "John",
-    "middle_name": "Doe",
-    "last_name": "Smith",
-    "date_of_birth": "1990-05-15",
-    "place_of_birth": "New York",
-    "gender": "Male",
-    "city": "New York City",
-    "address": "123 Main St",
-    "nationality": "American",
-    "full_name": "John Doe Smith",
-    "email": "johndoe@example.com"
-  }`);
