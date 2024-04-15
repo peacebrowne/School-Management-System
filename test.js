@@ -18295,11 +18295,11 @@ async function test() {
   };
 
   const fields = [
-    "person.id AS person_id",
+    "person.id",
     "first_name",
     "middle_name",
     "last_name",
-    "students.id AS student_id",
+    "students.id",
   ];
 
   const t = await new Read().readAll(

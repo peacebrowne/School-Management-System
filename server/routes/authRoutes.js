@@ -1,16 +1,17 @@
 import { Router } from "express";
 import Controller from "../controller/controller.js";
-import Validations from "../validation/validation.js";
 
-const { login_post } = new Controller();
-const { valid_email, valid_password } = new Validations();
+const { login_post, admin_dashboard, login_get, create_student } =
+  new Controller();
 
 const router = Router();
 
 router.post("/login", login_post);
 
-router.post("/valid-email", valid_email);
+router.post("/create-student", create_student);
 
-router.post("/valid-password", valid_password);
+router.get("/login", login_get);
+
+router.get("/admin/dashboard", admin_dashboard);
 
 export default router;

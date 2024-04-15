@@ -1,17 +1,21 @@
+import { controllers } from "chart.js";
 import Validations from "../validation/validation.js";
+import { Read, Create } from "./handler.js";
+
+const { readAll } = new Read();
 
 const { signIn, valid_email } = new Validations();
 
 export default class Controller {
   login_get = async (request, response) => {
+    console.log(request.body);
     response.render("login", {
       title: "Log In",
     });
   };
 
   login_post = async (request, response) => {
-    const { email, password } = JSON.parse(request.body);
-    console.log(email, password);
+    const { email, password } = request.body;
 
     if (!valid_email(email))
       return response
@@ -35,11 +39,24 @@ export default class Controller {
     response.redirect(`/admin/${chosen}`);
   };
 
+  create_student = async (request, response) => {
+    const studentData = request.body;
+    const result = await new Create().createStudent(studentData);
+    response.send(studentData);
+  };
+
   admin_dashboard = async (request, response) => {
+    const students = await readAll("students");
+    const teachers = await readAll("teachers");
+
     response.render("dashboard", {
       title: "Admin Dashboard",
       total_collections: "75,000",
       fee_collections: "15,000",
+      card: {
+        students: students.length,
+        teachers: teachers.length,
+      },
     });
   };
 }

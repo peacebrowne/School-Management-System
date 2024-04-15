@@ -20,7 +20,7 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", "public/views");
 
-app.use(routes);
+// app.use(routes);
 app.use(authRoutes);
 
 // Start the server

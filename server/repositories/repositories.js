@@ -1,4 +1,5 @@
 import sqlite3 from "sqlite3";
+import { v4 as uuidv4 } from "uuid";
 
 // CONNECT TO DB
 const db = new sqlite3.Database("database.db");
@@ -30,6 +31,7 @@ class Transactions {
       const whereClause = ` WHERE ${filterClauses.join(" AND ")}`;
       query += whereClause;
     }
+
     return query;
   }
 
@@ -103,3 +105,7 @@ class Interactions {
 }
 
 export default Interactions;
+
+// for (let i = 0; i < 15; i++) {
+//   console.log(uuidv4());
+// }

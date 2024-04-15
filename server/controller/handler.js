@@ -35,17 +35,6 @@ class Create {
     return id;
   }
 
-  async createPerson(data) {
-    const id = uuidv4();
-    data.id = id;
-
-    const { columns, values, params } = handleCreate(data);
-
-    writeData("person", { columns, values, params });
-
-    return id;
-  }
-
   async createTeacher(data) {
     const id = uuidv4();
 
@@ -74,31 +63,63 @@ class Create {
     return id;
   }
 
+  async createPerson(data) {
+    const id = uuidv4();
+    data.id = id;
+
+    const { columns, values, params } = handleCreate(data);
+
+    writeData("person", { columns, values, params });
+
+    return id;
+  }
+
   async createStudent(data) {
     const id = uuidv4();
+
+    const { guardians, class_name } = data;
+    this.createGuardiansStudents(id, guardians);
+
+    const class_id = await new Read().readAll("classes", ["id"], {
+      name: class_name,
+    });
 
     const person_id = await this.createPerson({
       first_name: data.first_name,
       middle_name: data?.middle_name ?? "",
       last_name: data.last_name,
       date_of_birth: data.date_of_birth,
-      place_of_birth: data?.place_of_birth ?? "",
+      contact_number: data?.contact_number ?? "",
       gender: data.gender,
       city: data?.city,
       address: data?.address ?? "",
       nationality: data?.nationality,
-      full_name: `${data.first_name} ${data?.middle_name ?? ""} ${
-        data.last_name
-      }`,
+      email: data?.middle_name ?? "",
     });
 
     const { columns, values, params } = handleCreate({
       id: id,
       person_id: person_id,
+      class_id: class_id,
     });
 
     writeData("students", { columns, values, params });
     return id;
+  }
+
+  async createGuardians(data) {}
+
+  async createClass(data) {}
+
+  async createGuardiansStudents(student_id, guardians) {
+    if (guardians.length) {
+      for (const guardian of guardians) {
+        guardian.student_id = student_id;
+
+        const { columns, values, params } = handleCreate(guardian);
+        writeData("guardians_students", { columns, values, params });
+      }
+    }
   }
 
   async createUser(data) {

@@ -7,7 +7,7 @@ const { isEmail, isEmpty, isStrongPassword } = pkg;
 
 export default class Validations {
   signIn = async (data) => {
-    const { email, password } = JSON.parse(data);
+    const { email, password } = data;
 
     const result = await new Interactions("person", "read").readData(email);
 
@@ -39,6 +39,10 @@ export default class Validations {
     //     };
   };
 
+  valid_email = (email) => {
+    return isEmail(email);
+  };
+
   resetPassword = async (mail) => {
     const info = JSON.parse(mail);
     const result = await getUserData(info.email);
@@ -50,30 +54,30 @@ export default class Validations {
           status: false,
         };
   };
-
-  valid_email = async (request, response) => {
-    const email = request.body.email;
-
-    response.send(
-      !isEmail(email)
-        ? `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto">Please enter a valid email address </span> </div>`
-        : `<div class="message"></div>`
-    );
-  };
-
-  valid_password = async (request, response) => {
-    const password = request.body.password;
-
-    response.send(
-      !isStrongPassword(password, {
-        minLength: 6,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      }) || isEmpty(password)
-        ? `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> Invalid Password </span> </div>`
-        : `<div class="message"></div>`
-    );
-  };
 }
+
+// valid_email = async (request, response) => {
+//   const email = request.body.email;
+
+//   response.send(
+//     !isEmail(email)
+//       ? `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto">Please enter a valid email address </span> </div>`
+//       : `<div class="message"></div>`
+//   );
+// };
+
+// valid_password = async (request, response) => {
+//   const password = request.body.password;
+
+//   response.send(
+//     !isStrongPassword(password, {
+//       minLength: 6,
+//       minLowercase: 1,
+//       minUppercase: 1,
+//       minNumbers: 1,
+//       minSymbols: 1,
+//     }) || isEmpty(password)
+//       ? `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> Invalid Password </span> </div>`
+//       : `<div class="message"></div>`
+//   );
+// };
