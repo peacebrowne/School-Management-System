@@ -18,5 +18,11 @@
     "titleBar.inactiveBackground": "#1c675899",
     "titleBar.inactiveForeground": "#e7e7e799"
   },
-  "peacock.color": "#1C6758"
+  "peacock.color": "#1C6758",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.fontFamily": "'Fira Code','Droid Sans Mono', 'monospace', monospace,'fira code'",
+  "editor.fontLigatures": true,
+  "chat.editor.fontWeight": "default"
 }

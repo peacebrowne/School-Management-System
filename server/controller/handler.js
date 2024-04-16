@@ -77,10 +77,10 @@ class Create {
   async createStudent(data) {
     const id = uuidv4();
 
-    const { guardians, class_name } = data;
-    this.createGuardiansStudents(id, guardians);
+    const { relatives, class_name } = data;
+    this.createGuardiansStudents(id, relatives, "student");
 
-    const class_id = await new Read().readAll("classes", ["id"], {
+    const class_id = await new Read().readValue("classes", ["id"], {
       name: class_name,
     });
 
@@ -93,30 +93,65 @@ class Create {
       gender: data.gender,
       city: data?.city,
       address: data?.address ?? "",
-      nationality: data?.nationality,
+      nationality: data?.nationality ?? "",
       email: data?.middle_name ?? "",
     });
 
     const { columns, values, params } = handleCreate({
       id: id,
       person_id: person_id,
-      class_id: class_id,
+      class_id: class_id.id,
     });
 
     writeData("students", { columns, values, params });
-    return id;
+    return { id, msg: "Student Successfully Created!" };
   }
 
-  async createGuardians(data) {}
+  async createGuardians(data) {
+    const id = uuidv4();
 
-  async createClass(data) {}
+    const { relatives } = data;
 
-  async createGuardiansStudents(student_id, guardians) {
-    if (guardians.length) {
-      for (const guardian of guardians) {
-        guardian.student_id = student_id;
+    this.createGuardiansStudents(id, relatives);
 
-        const { columns, values, params } = handleCreate(guardian);
+    const person_id = await this.createPerson({
+      first_name: data.first_name,
+      middle_name: data?.middle_name ?? "",
+      last_name: data.last_name,
+      date_of_birth: data.date_of_birth,
+      contact_number: data?.contact_number ?? "",
+      gender: data.gender,
+      city: data?.city,
+      address: data?.address ?? "",
+      nationality: data?.nationality ?? "",
+      email: data?.middle_name ?? "",
+    });
+
+    const { columns, values, params } = handleCreate({
+      id: id,
+      person_id: person_id,
+      occupation: data?.occupation ?? "",
+      guardian_type: data.guardian_type,
+    });
+
+    writeData("guardians", { columns, values, params });
+    return { id, msg: "Guardian Successfully Created!" };
+  }
+
+  async createGuardiansStudents(id, relatives, owner) {
+    if (relatives.length) {
+      for (const relative of relatives) {
+        if (owner === "student") {
+          relative.student_id = id;
+          relative.guardian_id = relative.id;
+        } else {
+          relative.guardian_id = id;
+          relative.student_id = relative.id;
+        }
+
+        delete relative.id;
+
+        const { columns, values, params } = handleCreate(relative);
         writeData("guardians_students", { columns, values, params });
       }
     }
@@ -162,50 +197,13 @@ class Read {
     return data;
   }
 
-  async readPerson(fields, filters) {
-    const data = await readData("person", {
-      fields,
-      filters,
-    });
-    console.log(data);
-  }
-
-  async readEmployee(fields, filters) {
-    const data = await readData("employees", {
-      fields,
-      filters,
-    });
-  }
-
-  async readTeacher(fields, filters) {
-    const data = await readData("teachers", {
-      fields,
-      filters,
-    });
-  }
-
-  async readStudent(fields, filters) {
-    const data = await readData("students", {
+  async readValue(table, fields, filters) {
+    const data = await readData(table, {
       fields,
       filters,
     });
 
-    return data[0] ? data[0] : false;
-  }
-
-  async readEmployee(fields, filters) {
-    const data = await readData("employees", {
-      fields,
-      filters,
-    });
-  }
-
-  async readUser(fields, filters) {
-    const data = await readData("users", {
-      fields,
-      filters,
-    });
-    console.log(data);
+    return data[0] ? data[0] : data;
   }
 }
 
@@ -215,7 +213,11 @@ class Update {
   }
 
   async updateStudent(fields, values, filters) {
-    const person = await new Read().readStudent(["person_id"], filters);
+    const person = await new Read().readValue(
+      "students",
+      ["person_id"],
+      filters
+    );
 
     const person_filter = { id: person.person_id };
     updateData("person", { fields, values, filters: person_filter });

@@ -1,4 +1,3 @@
-import { controllers } from "chart.js";
 import Validations from "../validation/validation.js";
 import { Read, Create } from "./handler.js";
 
@@ -7,6 +6,37 @@ const { readAll } = new Read();
 const { signIn, valid_email } = new Validations();
 
 export default class Controller {
+  create_student = async (request, response) => {
+    const studentData = request.body;
+    const result = await new Create().createStudent(studentData);
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
+  create_guardian = async (request, response) => {
+    const guardianData = request.body;
+    const result = await new Create().createGuardians(guardianData);
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
+  admin_dashboard = async (request, response) => {
+    const students = await readAll("students");
+    const teachers = await readAll("teachers");
+
+    response.render("dashboard", {
+      title: "Admin Dashboard",
+      total_collections: "75,000",
+      fee_collections: "15,000",
+      card: {
+        students: students.length,
+        teachers: teachers.length,
+      },
+    });
+  };
+
   login_get = async (request, response) => {
     console.log(request.body);
     response.render("login", {
@@ -37,27 +67,6 @@ export default class Controller {
     const chosen = dashboard[key] || dashboard.default;
 
     response.redirect(`/admin/${chosen}`);
-  };
-
-  create_student = async (request, response) => {
-    const studentData = request.body;
-    const result = await new Create().createStudent(studentData);
-    response.send(studentData);
-  };
-
-  admin_dashboard = async (request, response) => {
-    const students = await readAll("students");
-    const teachers = await readAll("teachers");
-
-    response.render("dashboard", {
-      title: "Admin Dashboard",
-      total_collections: "75,000",
-      fee_collections: "15,000",
-      card: {
-        students: students.length,
-        teachers: teachers.length,
-      },
-    });
   };
 }
 

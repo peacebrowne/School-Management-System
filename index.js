@@ -1,5 +1,4 @@
 import express from "express";
-import routes from "./server/routes/routes.js";
 import authRoutes from "./server/routes/authRoutes.js";
 
 const app = express();
@@ -20,7 +19,6 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", "public/views");
 
-// app.use(routes);
 app.use(authRoutes);
 
 // Start the server
