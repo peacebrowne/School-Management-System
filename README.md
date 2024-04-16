@@ -1,1 +1,1 @@
-# SeatEase
+# High School Management System for learning purposes.
