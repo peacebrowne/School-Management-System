@@ -78,7 +78,7 @@ class Create {
     const id = uuidv4();
 
     const { relatives, class_name } = data;
-    this.createGuardiansStudents(id, relatives, "student");
+    this.createParentsStudents(id, relatives, "student");
 
     const class_id = await new Read().readValue("classes", ["id"], {
       name: class_name,
@@ -107,12 +107,12 @@ class Create {
     return { id, msg: "Student Successfully Created!" };
   }
 
-  async createGuardians(data) {
+  async createParents(data) {
     const id = uuidv4();
 
     const { relatives } = data;
 
-    this.createGuardiansStudents(id, relatives);
+    this.createParentsStudents(id, relatives);
 
     const person_id = await this.createPerson({
       first_name: data.first_name,
@@ -134,11 +134,11 @@ class Create {
       guardian_type: data.guardian_type,
     });
 
-    writeData("guardians", { columns, values, params });
+    writeData("parents", { columns, values, params });
     return { id, msg: "Guardian Successfully Created!" };
   }
 
-  async createGuardiansStudents(id, relatives, owner) {
+  async createParentsStudents(id, relatives, owner) {
     if (relatives.length) {
       for (const relative of relatives) {
         if (owner === "student") {
@@ -152,7 +152,7 @@ class Create {
         delete relative.id;
 
         const { columns, values, params } = handleCreate(relative);
-        writeData("guardians_students", { columns, values, params });
+        writeData("parents_students", { columns, values, params });
       }
     }
   }
@@ -222,6 +222,55 @@ class Update {
     const person_filter = { id: person.person_id };
     updateData("person", { fields, values, filters: person_filter });
   }
+
+  async updateParent(data) {
+    const { id } = data;
+
+    const parent_info = await new Read().readValue(
+      "parents",
+      ["person_id", "occupation", "guardian_type"],
+      {
+        id: id,
+      }
+    );
+
+    const person_filter = { id: parent_info.person_id };
+    delete parent_info.person_id;
+
+    const personal_info = await new Read().readValue(
+      "person",
+      undefined,
+      person_filter
+    );
+
+    delete personal_info.id;
+
+    for (const key in data) {
+      if (Object.hasOwn(personal_info, key)) {
+        personal_info[key] = data[key];
+      }
+    }
+
+    // Updating personal information
+    updateData("person", {
+      ...handleUpdate(personal_info),
+      ...{ filters: person_filter },
+    });
+
+    for (const key in data) {
+      if (Object.hasOwn(parent_info, key)) {
+        parent_info[key] = data[key];
+      }
+    }
+
+    // Updating parent information
+    const result = await updateData("parents", {
+      ...handleUpdate(parent_info),
+      ...{ filters: { id: id } },
+    });
+
+    return { msg: result };
+  }
 }
 
 const handleCreate = (data) => {
@@ -231,7 +280,18 @@ const handleCreate = (data) => {
     .join(", ");
 
   const params = Object.values(data);
+
   return { columns, values, params };
+};
+
+const handleUpdate = (data) => {
+  const columns = Object.keys(data)
+    .map((field) => `${field} = ?`)
+    .join(", ");
+
+  const params = Object.values(data);
+
+  return { columns, params };
 };
 
 export { Create, Read, Update };

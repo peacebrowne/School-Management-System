@@ -1,11 +1,12 @@
 import Validations from "../validation/validation.js";
-import { Read, Create } from "./handler.js";
+import { Read, Create, Update } from "./handler.js";
 
 const { readAll } = new Read();
 
 const { signIn, valid_email } = new Validations();
 
 export default class Controller {
+  // Student controller for creating a new student
   create_student = async (request, response) => {
     const studentData = request.body;
     const result = await new Create().createStudent(studentData);
@@ -14,9 +15,19 @@ export default class Controller {
     );
   };
 
-  create_guardian = async (request, response) => {
-    const guardianData = request.body;
-    const result = await new Create().createGuardians(guardianData);
+  // Parent controller for creating a new parent
+  create_parent = async (request, response) => {
+    const parentData = request.body;
+    const result = await new Create().createParents(parentData);
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
+  // Parent controller for updating a new parent
+  update_parent = async (request, response) => {
+    const parentData = request.body;
+    const result = await new Update().updateParent(parentData);
     response.send(
       `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
     );

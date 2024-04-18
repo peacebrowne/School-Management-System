@@ -18312,4 +18312,20 @@ async function test() {
   console.log(t);
 }
 
-test();
+// test();
+
+async function update() {
+  const data = {
+    id: "423bfb06-9850-4cac-b898-213e2d59b1c7",
+    occupation: "Auditor",
+    middle_name: "Austine",
+    gender: "Female",
+    email: "ruth@example.com",
+    contact_number: "+231 770237596",
+    guardian_type: "Mother",
+  };
+
+  new Update().updateParent(data);
+}
+
+// update();

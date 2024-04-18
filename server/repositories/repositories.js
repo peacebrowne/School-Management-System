@@ -30,13 +30,10 @@ class Transactions {
       const whereClause = ` WHERE ${filterClauses.join(" AND ")}`;
       query += whereClause;
     }
-
     return query;
   }
 
-  update(fields, filters) {
-    const columns = fields.map((field) => `${field} = ?`).join(", ");
-
+  update(columns, filters) {
     let query = `UPDATE ${this.table} SET ${columns} `;
     const keys = Object.keys(filters);
 
@@ -86,12 +83,9 @@ class Interactions {
 
   updateData = async (table, data) => {
     return await new Promise((resolve, reject) => {
-      const operations = new Transactions(table).update(
-        data.fields,
-        data.filters
-      );
+      const { columns, params, filters } = data;
 
-      const params = data.values;
+      const operations = new Transactions(table).update(columns, filters);
 
       db.run(operations, params, (error) => {
         if (error) return reject(error.message);
