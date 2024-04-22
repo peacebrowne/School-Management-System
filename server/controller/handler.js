@@ -348,6 +348,7 @@ class Update {
 
 class Delete {
   async deleteUser(data) {
+    await deleteData("roles", handleDelete({ user_id: data.id }));
     const result = await deleteData("users", handleDelete(data));
     return { msg: `User ${result} Deleted!` };
   }
