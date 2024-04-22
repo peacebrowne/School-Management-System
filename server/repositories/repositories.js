@@ -45,6 +45,10 @@ class Transactions {
 
     return query;
   }
+
+  delete(values) {
+    return `DELETE FROM ${this.table} WHERE ${values.join(" AND ")}`;
+  }
 }
 
 class Interactions {
@@ -58,7 +62,7 @@ class Interactions {
 
       db.run(operations, params, (error) => {
         if (error) return reject(error.message);
-        resolve("User Successfully Registered!");
+        resolve("Successfully");
       });
     });
   };
@@ -89,12 +93,27 @@ class Interactions {
 
       db.run(operations, params, (error) => {
         if (error) return reject(error.message);
-        resolve("Update Successfully!");
+        resolve("Successfully!");
       });
     });
   };
 
-  deleteData = async (table, data) => {};
+  deleteData = async (table, data) => {
+    try {
+      return await new Promise((resolve, reject) => {
+        const { values, params } = data;
+
+        const operations = new Transactions(table).delete(values);
+
+        db.run(operations, params, (error) => {
+          if (error) return reject(error.message);
+          resolve("Successfully");
+        });
+      });
+    } catch (error) {
+      console.error("Error deleting", error.message);
+    }
+  };
 }
 
 export default Interactions;

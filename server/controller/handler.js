@@ -1,66 +1,50 @@
 import { v4 as uuidv4 } from "uuid";
 import Interactions from "../repositories/repositories.js";
 
-const { writeData, readData, updateData } = new Interactions();
+const { writeData, readData, updateData, deleteData } = new Interactions();
 
 class Create {
   async createEmployee(data) {
     const id = uuidv4();
 
-    const person_id = this.createPerson({
+    const person_id = await this.createPerson({
       first_name: data.first_name,
       middle_name: data?.middle_name ?? "",
       last_name: data.last_name,
       date_of_birth: data.date_of_birth,
-      place_of_birth: data?.place_of_birth ?? "",
+      contact_number: data?.contact_number ?? "",
       gender: data.gender,
       city: data?.city,
-      address: data?.address,
-      nationality: data?.nationality,
-      full_name: `${data.first_name} ${data?.middle_name ?? ""} ${
-        data.last_name
-      }`,
+      address: data?.address ?? "",
+      nationality: data?.nationality ?? "",
+      email: data?.email ?? "",
     });
 
     const { columns, values, params } = handleCreate({
       id: id,
-      departments: data?.departments ?? "",
+      department: data?.department ?? "",
       salary: data?.salary ?? "",
       employee_type: data?.employee_type ?? "",
       person_id: person_id,
     });
 
-    writeData("employees", { columns, values, params });
+    const result = await writeData("employees", { columns, values, params });
 
-    return id;
+    return { msg: `Employee ${result} Created!`, id };
   }
 
   async createTeacher(data) {
     const id = uuidv4();
 
-    const employee_id = this.createEmployee({
-      first_name: data.first_name,
-      middle_name: data?.middle_name ?? "",
-      last_name: data.last_name,
-      date_of_birth: data.date_of_birth,
-      place_of_birth: data?.place_of_birth ?? "",
-      gender: data.gender,
-      city: data?.city,
-      address: data?.address,
-      nationality: data?.nationality,
-      full_name: `${data.first_name} ${data?.middle_name ?? ""} ${
-        data.last_name
-      }`,
-    });
+    const employee = await this.createEmployee(data);
 
     const { columns, values, params } = handleCreate({
       id: id,
-      employee_id: employee_id,
+      employee_id: employee.id,
     });
 
-    writeData("teachers", { columns, values, params });
-
-    return id;
+    const result = await writeData("teachers", { columns, values, params });
+    return { msg: `Teacher ${result} Created!`, id };
   }
 
   async createPerson(data) {
@@ -77,12 +61,8 @@ class Create {
   async createStudent(data) {
     const id = uuidv4();
 
-    const { relatives, class_name } = data;
+    const { relatives, class_name, max_strength } = data;
     this.createParentsStudents(id, relatives, "student");
-
-    const class_id = await new Read().readValue("classes", ["id"], {
-      name: class_name,
-    });
 
     const person_id = await this.createPerson({
       first_name: data.first_name,
@@ -100,10 +80,12 @@ class Create {
     const { columns, values, params } = handleCreate({
       id: id,
       person_id: person_id,
-      class_id: class_id.id,
+      class_id: class_name,
     });
 
     writeData("students", { columns, values, params });
+    new Update().updateClasses({ class_name, max_strength });
+
     return { id, msg: "Student Successfully Created!" };
   }
 
@@ -124,7 +106,7 @@ class Create {
       city: data?.city,
       address: data?.address ?? "",
       nationality: data?.nationality ?? "",
-      email: data?.middle_name ?? "",
+      email: data?.email ?? "",
     });
 
     const { columns, values, params } = handleCreate({
@@ -161,20 +143,20 @@ class Create {
     const id = uuidv4();
     data.id = id;
 
-    const { role } = data;
+    const { roles } = data;
 
-    delete data.role;
+    delete data.roles;
 
     const { columns, values, params } = handleCreate(data);
 
-    writeData("users", { columns, values, params });
-
     this.createRole({
       user_id: id,
-      role: JSON.stringify(role),
+      roles: JSON.stringify(roles),
     });
 
-    return id;
+    const result = await writeData("users", { columns, values, params });
+
+    return { msg: `User ${result} Created!`, id };
   }
 
   async createRole(data) {
@@ -203,24 +185,108 @@ class Read {
       filters,
     });
 
-    return data[0] ? data[0] : data;
+    return data[0] ? data[0] : false;
   }
 }
 
 class Update {
-  updateEmployee(fields, values, filters) {
-    updateData("employees", { fields, values, filters });
-  }
+  async updateStudent(data) {
+    const { id } = data;
 
-  async updateStudent(fields, values, filters) {
-    const person = await new Read().readValue(
+    const student_info = await new Read().readValue(
       "students",
-      ["person_id"],
-      filters
+      ["person_id", "class_id"],
+      { id: id }
     );
 
-    const person_filter = { id: person.person_id };
-    updateData("person", { fields, values, filters: person_filter });
+    const student_filter = { id: student_info.person_id };
+    delete student_info.id;
+
+    const personal_info = await new Read().readValue(
+      "person",
+      undefined,
+      student_filter
+    );
+    delete personal_info.id;
+
+    for (const key in data) {
+      if (Object.hasOwn(personal_info, key)) {
+        personal_info[key] = data[key];
+      }
+    }
+
+    // Updating personal information
+    updateData("person", {
+      ...handleUpdate(personal_info),
+      ...{ filters: student_filter },
+    });
+
+    for (const key in data) {
+      if (Object.hasOwn(student_info, key)) {
+        student_info[key] = data[key];
+      }
+    }
+
+    // Updating employee's information
+    const result = await updateData("students", {
+      ...handleUpdate(student_info),
+      ...{ filters: { id: id } },
+    });
+
+    return { msg: result, id: id };
+  }
+
+  async updateEmployee(data) {
+    const { id } = data;
+
+    const employee_info = await new Read().readValue(
+      "employees",
+      [
+        "person_id",
+        "department",
+        "position",
+        "salary",
+        "employee_type",
+        "salutation",
+      ],
+      { id: id }
+    );
+
+    const employee_filter = { id: employee_info.person_id };
+    delete employee_info.id;
+
+    const personal_info = await new Read().readValue(
+      "person",
+      undefined,
+      employee_filter
+    );
+    delete personal_info.id;
+
+    for (const key in data) {
+      if (Object.hasOwn(personal_info, key)) {
+        personal_info[key] = data[key];
+      }
+    }
+
+    // Updating personal information
+    updateData("person", {
+      ...handleUpdate(personal_info),
+      ...{ filters: employee_filter },
+    });
+
+    for (const key in data) {
+      if (Object.hasOwn(employee_info, key)) {
+        employee_info[key] = data[key];
+      }
+    }
+
+    // Updating employee's information
+    const result = await updateData("employees", {
+      ...handleUpdate(employee_info),
+      ...{ filters: { id: id } },
+    });
+
+    return { msg: result, id: id };
   }
 
   async updateParent(data) {
@@ -229,9 +295,7 @@ class Update {
     const parent_info = await new Read().readValue(
       "parents",
       ["person_id", "occupation", "guardian_type"],
-      {
-        id: id,
-      }
+      { id: id }
     );
 
     const person_filter = { id: parent_info.person_id };
@@ -271,6 +335,26 @@ class Update {
 
     return { msg: result };
   }
+
+  async updateClasses(data) {
+    let { class_name, max_strength } = data;
+
+    updateData("classes", {
+      ...handleUpdate({ max_strength: --max_strength }),
+      ...{ filters: { id: class_name } },
+    });
+  }
+}
+
+class Delete {
+  async deleteUser(data) {
+    const result = await deleteData("users", handleDelete(data));
+    return { msg: `User ${result} Deleted!` };
+  }
+
+  async deleteEmployee(data) {
+    const result = await deleteData("employees", handleDelete(data));
+  }
 }
 
 const handleCreate = (data) => {
@@ -294,4 +378,10 @@ const handleUpdate = (data) => {
   return { columns, params };
 };
 
-export { Create, Read, Update };
+const handleDelete = (data) => {
+  const values = Object.keys(data).map((field) => `${field} = ?`);
+  const params = Object.values(data);
+  return { values, params };
+};
+
+export { Create, Read, Update, Delete };

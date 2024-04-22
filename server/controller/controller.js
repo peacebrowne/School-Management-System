@@ -1,17 +1,46 @@
 import Validations from "../validation/validation.js";
-import { Read, Create, Update } from "./handler.js";
+import { Read, Create, Update, Delete } from "./handler.js";
 
 const { readAll } = new Read();
 
-const { signIn, valid_email } = new Validations();
+const { signIn, valid_email, user_validation, class_validation } =
+  new Validations();
 
 export default class Controller {
+  // Teacher controller for creating a new teacher
+  create_teacher = async (request, response) => {
+    const teacherData = request.body;
+    const result = await new Create().createTeacher(teacherData);
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
   // Student controller for creating a new student
   create_student = async (request, response) => {
     const studentData = request.body;
-    const result = await new Create().createStudent(studentData);
+
+    const classData = await class_validation(studentData.class_name);
+
+    if (!classData.status) {
+      response.send(
+        `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto">
+          ${classData.msg}
+        </span> </div>`
+      );
+    }
+
+    delete classData.status;
+    delete studentData.class_name;
+
+    const result = await new Create().createStudent({
+      ...studentData,
+      ...classData,
+    });
     response.send(
-      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> 
+        ${result.msg} 
+      </span> </div>`
     );
   };
 
@@ -24,12 +53,71 @@ export default class Controller {
     );
   };
 
-  // Parent controller for updating a new parent
+  // Parent controller for updating a parent
   update_parent = async (request, response) => {
     const parentData = request.body;
     const result = await new Update().updateParent(parentData);
     response.send(
       `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
+  // Employee controller for creating a new employee
+  create_employee = async (request, response) => {
+    const employeeData = request.body;
+
+    const result = await new Create().createEmployee(employeeData);
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
+  // Employee controller for updating an employee.
+  update_employee = async (request, response) => {
+    const employeeData = request.body;
+    const result = await new Update().updateEmployee(employeeData);
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
+  // Employee controller for deleting an employee.
+  delete_employee = async (request, response) => {
+    const employeeData = request.body;
+    const result = await new Update().deleteEmployee(employeeData);
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger"> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
+  // User controller for creating a new user
+  create_user = async (request, response) => {
+    const userData = request.body;
+
+    const { email, password } = userData;
+
+    const userExist = await user_validation(email);
+
+    if (!userExist.status)
+      return response.send(
+        `<div class="message text-sm py-2.5 rounded-lg flex danger> <span class="mx-auto"> ${userExist.msg} </span> </div>`
+      );
+
+    const result = await new Create().createUser(userData);
+
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger> <span class="mx-auto"> ${result.msg} </span> </div>`
+    );
+  };
+
+  // User controller for deleting users
+  delete_user = async (request, response) => {
+    const userData = request.body;
+
+    const result = await new Delete().deleteUser(userData);
+
+    response.send(
+      `<div class="message text-sm py-2.5 rounded-lg flex danger> <span class="mx-auto"> ${result.msg} </span> </div>`
     );
   };
 
